@@ -77,7 +77,9 @@ WSGI_APPLICATION = 'fittrackr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': BASE_DIR / 'fittrackr',
+        'NAME': 'fittrackr',
+        'USER': 'bna',
+        'PASSWORD': 'test1234',
     }
 }
 
