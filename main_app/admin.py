@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import NewUser, Day
+from .models import NewUser, Day, Meal, Workout
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 # Register your models here.
@@ -40,3 +40,7 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(NewUser, CustomUserAdmin)
 
 admin.site.register(Day)
+admin.site.register(Meal)
+admin.site.register(Workout)
+
+
