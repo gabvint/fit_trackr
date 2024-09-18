@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import NewUser
+from .models import NewUser, Day
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 # Register your models here.
@@ -38,3 +38,5 @@ class CustomUserAdmin(UserAdmin):
   fieldsets = tuple(fieldsets)
   
 admin.site.register(NewUser, CustomUserAdmin)
+
+admin.site.register(Day)
