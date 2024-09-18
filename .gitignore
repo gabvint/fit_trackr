@@ -170,5 +170,3 @@ spec/reports
 spec/tmp
 test/tmp
 test/version_tmp
-
-main_app/workout_api.py
