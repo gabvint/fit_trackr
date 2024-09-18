@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fittrackr',
-        'USER': 'bna',
-        'PASSWORD': 'test1234',
+        # 'USER': 'bna',
+        # 'PASSWORD': 'test1234',
     }
 }
 
