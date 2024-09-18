@@ -18,4 +18,4 @@ class Meal(models.Model):
     name = models.CharField()
     meal = models.CharField()
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
-    
+
