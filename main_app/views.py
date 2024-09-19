@@ -7,7 +7,9 @@ from django.contrib.auth import login
 from .workout_api import get_workouts
 import json
 from django.urls import reverse_lazy
-from .models import Workout, NewUser
+from .models import Workout, NewUser, Day
+from .forms import WorkoutForm
+
 
 
 class Home(LoginView):
@@ -16,7 +18,13 @@ class Home(LoginView):
   
 class CreateWorkout(CreateView):
   model = Workout
-  fields = ['muscle_group']
+  form_class = WorkoutForm
+  
+  def get_form_kwargs(self):
+    kwargs = super().get_form_kwargs()
+    user = self.request.user
+    kwargs['available_days'] = Day.objects.filter(user=user)
+    return kwargs
   
   
 
