@@ -9,6 +9,6 @@ urlpatterns = [
   path('workout/<int:workout_id>/<str:muscle_group>/', views.WorkoutList.as_view(), name="workout_list"),
   path('dashboard/', views.user_dashboard, name="user_dashboard"),
   # path('goals/', views.GoalsList.as_view(), name="goals_index"),
-  # path('goals/create', views.SetGoals.as_view(), name="set_goals"),
+  path('goals/<int:pk>/update', views.SetGoals.as_view(), name="set_goals"),
   path('accounts/signup/', views.signup, name="signup"),
 ]

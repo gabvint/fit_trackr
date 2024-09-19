@@ -28,6 +28,9 @@ class MuscleGroup(Enum):
 class NewUser(AbstractUser):
     workout_goal = models.IntegerField(null=True, blank=True)
     calorie_goal = models.IntegerField(null=True, blank=True)
+    def get_absolute_url(self):
+        return reverse("user_dashboard", kwargs={"newuser_id": self.id})
+
 
 
 class Day(models.Model):

@@ -7,7 +7,7 @@ from django.contrib.auth import login
 from .workout_api import get_workouts
 import json
 from django.urls import reverse_lazy
-from .models import Workout
+from .models import Workout, NewUser
 
 
 class Home(LoginView):
@@ -50,7 +50,9 @@ class WorkoutList(CreateView):
         # You might want to add custom logic here or handle the form differently
         return super().form_valid(form)
 
-
+class SetGoals(UpdateView):
+    model = NewUser
+    fields = ['workout_goal', 'calorie_goal']
 
 def user_dashboard(request):
   return render(request, 'dashboard.html')
