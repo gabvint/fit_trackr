@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.views.generic import CreateView, UpdateView, DeleteView 
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
+from django.contrib.auth import login
 from .workout_api import get_workouts
 import json
 from django.urls import reverse_lazy
@@ -49,14 +52,24 @@ class WorkoutList(CreateView):
 
 
 
-
-
 def user_dashboard(request):
   return render(request, 'dashboard.html')
 
 
-  
-  
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('user_dashboard')
+        else:
+            error_message = 'Invalid sign up - try again'
+
+    form = CustomUserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
 
 
   

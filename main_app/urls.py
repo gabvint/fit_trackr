@@ -10,5 +10,5 @@ urlpatterns = [
   path('dashboard/', views.user_dashboard, name="user_dashboard"),
   # path('goals/', views.GoalsList.as_view(), name="goals_index"),
   # path('goals/create', views.SetGoals.as_view(), name="set_goals"),
-  
+  path('accounts/signup/', views.signup, name="signup"),
 ]
