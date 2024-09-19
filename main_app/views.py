@@ -66,6 +66,9 @@ class SetGoals(UpdateView):
 def user_dashboard(request):
   return render(request, 'dashboard.html')
 
+def meal_log(request):
+  return render(request, 'meal_log.html')
+
 
 def signup(request):
     error_message = ''
