@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load static tailwind_tags %}
 
 {% block head %}
-
+{% tailwind_css %}
 {% endblock head %}
 
 {% block content %}
-    <h1>Hello This is the dashboard</h1>
+    <h1 class=" text-8xl">Hello This is the dashboard</h1>
 {% endblock content %}
 
 

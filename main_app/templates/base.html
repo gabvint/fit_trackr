@@ -1,11 +1,14 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fit Trackr</title>
+  {% tailwind_css %}
   {% block head %}
   {% endblock %}
+
 </head>
 <body>
   <header>
@@ -13,7 +16,7 @@
       <ul>
         {% if user.is_authenticated %}
           {% comment %} <li><a href="{% url 'set_goals' %}">Goals</a></li> {% endcomment %}
-          <li><a href="{% url "set_goals" user.id%}">Goals</a></li>
+          <li class=" text-2xl text-red-500"><a href="{% url "set_goals" user.id%}">Goals</a></li>
           {% comment %} <li><a href="{% url "set_goals" user.id%}">Meals</a></li> {% endcomment %}
           {% comment %} <li><a href="{% url "set_goals" user.id%}">Workouts</a></li> {% endcomment %}
           <li>
