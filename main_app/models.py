@@ -44,7 +44,15 @@ class Meal(models.Model):
     name = models.CharField()
     meal = models.CharField()
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
-
+    calories = models.IntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("user_dashboard")
+    
 
 class Workout(models.Model):
     name = models.CharField()
@@ -57,9 +65,11 @@ class Workout(models.Model):
     sets = models.IntegerField(null=True, blank=True)
     reps = models.IntegerField(null=True, blank=True)
     calorie_lost = models.IntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.muscle_group
     
     def get_absolute_url(self):
-        return reverse("create_workout", kwargs={"workout_muscle_group": self.muscle_group})
+        return reverse("user_dashboard")
+
