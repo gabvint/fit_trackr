@@ -14,7 +14,7 @@ def get_workouts(muscle_group):
   }
   response = requests.get(url, headers=headers, params=querystring)
   
-  return response.json()
+  return response
 
 
 
