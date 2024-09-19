@@ -829,23 +829,19 @@ select {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-.text-8xl {
-  font-size: 6rem;
+.text-5xl {
+  font-size: 3rem;
   line-height: 1;
 }
 
-.italic {
-  font-style: italic;
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
 }
 
 .leading-normal {
@@ -854,11 +850,6 @@ select {
 
 .tracking-normal {
   letter-spacing: 0em;
-}
-
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .text-red-500 {
