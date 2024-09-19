@@ -82,9 +82,12 @@ class SetGoals(UpdateView):
     fields = ['workout_goal', 'calorie_goal']
 
 def user_dashboard(request):
-  return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html')
 
-
+def workout_log(request):
+    workouts = Workout.objects.all()
+    return render(request, 'workout_log.html', {'workouts': workouts})
+    
 def signup(request):
     error_message = ''
     if request.method == 'POST':

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+
+{% block head %}
+{% tailwind_css %}
+{% endblock head %}
+
+{% block content %}
+
+    <h1 class=" text-2xl">Workout Log</h1>
+
+    <section>
+        {% for workout in workouts %}
+            <div class=" flex gap-2">
+                <p>{{ workout.muscle_group }}</p>
+                <p>{{ workout.name }}</p>
+                <p>{{ workout.day }}</p>
+                <p>{{ workout.sets }}</p>
+                <p>{{ workout.reps }}</p>
+                <p>{{ workout.notes }}</p>
+            </div>
+        {% endfor %}
+    </section>
+
+{% endblock content %}
+
