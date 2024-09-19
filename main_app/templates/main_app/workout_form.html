@@ -8,19 +8,46 @@
 
 
 {% block content %}
-{% comment %} {%if not Workout.muscle_group  %}
-    <form action="{% url 'workout_list' %}" method="post">
+
+    <form action="" method="post" id='workout-form'>
         {% csrf_token %}
         <table>{{ form.as_table }}</table>
-        <button type="submit" class="btn submit">Submit!</button>
+        <button type="submit" class="btn submit">Submit</button>
     </form>
-{%else %} {% endcomment %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>{{ form.as_table }}</table>
-        <button type="submit" class="btn submit">Done!</button>
-    </form>
-{% comment %} {%endif%} {% endcomment %}
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_muscle_group').change(function() {
+                const muscleGroup = $(this).val();
+                
+                $.ajax({
+                    url: "{% url 'get_workouts_by_muscle_group' %}",
+                    data: {
+                        'muscle_group': muscleGroup
+                    },
+                    success: function(response) {
+                        const workoutSelect = $('#id_name');
+                        workoutSelect.empty();
+                        
+                        // Add a default option
+                        workoutSelect.append($('<option>', { 
+                            value: '',
+                            text : 'Select a workout'
+                        }));
+                        
+                        // Add the workout options returned by the API
+                        response.workouts.forEach(function(workout) {
+                            workoutSelect.append($('<option>', { 
+                                value: workout,
+                                text : workout 
+                            }));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock content %}
 
 

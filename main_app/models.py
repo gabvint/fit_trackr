@@ -55,7 +55,7 @@ class Meal(models.Model):
     
 
 class Workout(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=100,null=True, blank=True)
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     muscle_group = models.CharField(
         max_length=20,
