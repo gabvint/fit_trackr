@@ -34,13 +34,27 @@ class WorkoutForm(forms.ModelForm):
   def __init__(self, *args, **kwargs):
     available_days = kwargs.pop('available_days', None)
     workout_list = kwargs.pop('workout_list', [])
+    super().__init__(*args, **kwargs)
+
 
     super().__init__(*args, **kwargs)
     if available_days is not None:
       self.fields['day'].queryset = available_days
     self.fields['name'] = forms.ChoiceField(
-      choices=[('', 'Select a workout')] + [(workout, workout) for workout in workout_list]
+      choices=[('', 'Select a workout')] + [(workout, workout) for workout in workout_list],
+      required=False
       )
+    
+  def clean_name(self):
+        """Allow the 'name' field to accept dynamically added values, and make it optional for specific muscle groups."""
+        name = self.cleaned_data.get('name')
+        muscle_group = self.cleaned_data.get('muscle_group')
+        if muscle_group == "Warm":
+            return name
+        if not name:
+            raise forms.ValidationError("This field is required.")
+        return name
+
   
 class MealForm(forms.ModelForm):
   class Meta: 
