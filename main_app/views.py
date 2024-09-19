@@ -12,7 +12,7 @@ class Home(LoginView):
   
 class CreateWorkout(CreateView):
   model = Workout
-  fields = 'muscle_group'
+  fields = ['muscle_group']
   
 
 class WorkoutList(CreateView):
