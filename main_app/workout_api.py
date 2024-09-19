@@ -18,14 +18,3 @@ def get_workouts(muscle_group):
 
 
 
-# if response.status_code == 200:
-#     data = response.json()
-    
-#     muscles = [item['WorkOut'] for item in data if 'Muscles' in item]
-    
-#     print(muscles)
-# else:
-#     print(f"Error: {response.status_code}")
-  
-#print(response.json())
-
