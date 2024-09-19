@@ -4,7 +4,6 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from .workout_api import get_workouts
 import json
 from django.urls import reverse_lazy
-
 from .models import Workout
 
 
@@ -15,16 +14,6 @@ class Home(LoginView):
 class CreateWorkout(CreateView):
   model = Workout
   fields = ['muscle_group']
-  
-
-# class WorkoutList(CreateView):
-#   model = Workout
-#   fields = ['name', 'calorie_lost']
-#   workouts = get_workouts(model.muscle_group)
-
-#   if workouts.status_code == 200 : 
-#       data = workouts.json()
-#       workout_list = [item['WorkOut']for item in data if 'Muscles' in item]
   
   
 
@@ -60,8 +49,12 @@ class WorkoutList(CreateView):
 
 
 
-  
-  
+
+
+def user_dashboard(request):
+  return render(request, 'dashboard.html')
+
+
   
   
 

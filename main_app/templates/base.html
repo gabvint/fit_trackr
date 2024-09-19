@@ -12,7 +12,17 @@
 <body>
   <header>
     <nav>
+      <ul>
+        {% if user.is_authenticated %}
+          {% comment %} <li><a href="{% url 'set_goals' %}">Goals</a></li> {% endcomment %}
+          <li><a href="">Goals</a></li>
 
+        
+        {% else %}
+          <li><a href="{% url 'home' %}">Sign in</a></li>
+          {% comment %} <li><a href="">Sign up</a></li>  {% endcomment %}
+        {% endif %}
+      </ul>
     </nav>
   </header>
 
