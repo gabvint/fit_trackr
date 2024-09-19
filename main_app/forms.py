@@ -1,4 +1,4 @@
-from django import forms
+from django import forms # type: ignore
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import NewUser, Workout, Meal
 
@@ -33,9 +33,14 @@ class WorkoutForm(forms.ModelForm):
   
   def __init__(self, *args, **kwargs):
     available_days = kwargs.pop('available_days', None)
+    workout_list = kwargs.pop('workout_list', [])
+
     super().__init__(*args, **kwargs)
     if available_days is not None:
       self.fields['day'].queryset = available_days
+    self.fields['name'] = forms.ChoiceField(
+      choices=[('', 'Select a workout')] + [(workout, workout) for workout in workout_list]
+      )
   
 class MealForm(forms.ModelForm):
   class Meta: 

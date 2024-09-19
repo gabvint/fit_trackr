@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
 from .workout_api import get_workouts
-import json
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
@@ -24,8 +24,26 @@ class CreateWorkout(CreateView):
     kwargs = super().get_form_kwargs()
     user = self.request.user
     kwargs['available_days'] = Day.objects.filter(user=user)
+    muscle_group = self.kwargs.get('muscle_group', None)
+    if muscle_group:
+        workouts_response = get_workouts(muscle_group)
+        if workouts_response.status_code == 200:
+            data = workouts_response.json()
+            workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
+            kwargs['workout_list'] = workout_list
+        else:
+            kwargs['workout_list'] = []
     return kwargs
-  
+
+def get_workouts_by_muscle_group(request):
+    muscle_group = request.GET.get('muscle_group')
+    workouts_response = get_workouts(muscle_group)
+    if workouts_response.status_code == 200:
+        data = workouts_response.json()
+        workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
+        return JsonResponse({'workouts': workout_list})
+    return JsonResponse({'workouts': []})
+
 class CreateMeals(CreateView):
     model = Meal
     form_class = MealForm
