@@ -24,7 +24,7 @@ class CreateWorkout(CreateView):
     kwargs = super().get_form_kwargs()
     user = self.request.user
     kwargs['available_days'] = Day.objects.filter(user=user)
-    muscle_group = self.kwargs.get('muscle_group', None)
+    muscle_group = self.request.POST.get('muscle_group', None)
     if muscle_group:
         workouts_response = get_workouts(muscle_group)
         if workouts_response.status_code == 200:
