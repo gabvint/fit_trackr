@@ -54,6 +54,8 @@ class Workout(models.Model):
         choices=[(key.name, key.value) for key in MuscleGroup],
         default=MuscleGroup.BICEPS.value
     )
+    sets = models.IntegerField(null=True, blank=True)
+    reps = models.IntegerField(null=True, blank=True)
     calorie_lost = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
