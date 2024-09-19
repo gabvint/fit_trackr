@@ -87,7 +87,10 @@ def user_dashboard(request):
 def meal_log(request):
   return render(request, 'meal_log.html')
 
-
+def workout_log(request):
+    workouts = Workout.objects.all()
+    return render(request, 'workout_log.html', {'workouts': workouts})
+    
 def signup(request):
     error_message = ''
     if request.method == 'POST':
