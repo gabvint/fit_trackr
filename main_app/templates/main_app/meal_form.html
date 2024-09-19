@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+
+{% endblock head %}
+
+
+
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <button type="submit" class="btn submit">Done!</button>
+    </form>
+
+{% endblock content %}

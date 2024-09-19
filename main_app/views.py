@@ -7,8 +7,8 @@ from django.contrib.auth import login
 from .workout_api import get_workouts
 import json
 from django.urls import reverse_lazy
-from .models import Workout, NewUser, Day
-from .forms import WorkoutForm
+from .models import Workout, NewUser, Day, Meal
+from .forms import WorkoutForm, MealForm
 
 
 
@@ -26,21 +26,24 @@ class CreateWorkout(CreateView):
     kwargs['available_days'] = Day.objects.filter(user=user)
     return kwargs
   
-  
+class CreateMeals(CreateView):
+    model = Meal
+    form_class = MealForm
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        user = self.request.user
+        kwargs['available_days'] = Day.objects.filter(user=user)
+        return kwargs
 
 class WorkoutList(CreateView):
     model = Workout
     fields = ['name', 'calorie_lost']
-    success_url = reverse_lazy('workout_list')  # Redirect after form submission
+    success_url = reverse_lazy('workout_list')  
 
     def get_form_kwargs(self):
-        # Get the default form kwargs
         kwargs = super().get_form_kwargs()
-        
-        # Retrieve muscle group from request or some source
-        muscle_group = self.request.GET.get('muscle_group', 'default_muscle_group')  # Replace with actual default or passed value
-        
-        # Fetch workouts from API
+        muscle_group = self.request.GET.get('muscle_group', 'default_muscle_group')  
         workouts_response = get_workouts(muscle_group)
         
         if workouts_response.status_code == 200:
@@ -48,14 +51,12 @@ class WorkoutList(CreateView):
             workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
         else:
             workout_list = []
-
-        # Pass the workout list to the form as a keyword argument
+            
+            
         kwargs['initial'] = {'name': workout_list}
         return kwargs
 
     def form_valid(self, form):
-        # Override form_valid to handle form submission logic
-        # You might want to add custom logic here or handle the form differently
         return super().form_valid(form)
 
 class SetGoals(UpdateView):
