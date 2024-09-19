@@ -24,7 +24,7 @@ class CreateWorkout(CreateView):
     kwargs = super().get_form_kwargs()
     user = self.request.user
     kwargs['available_days'] = Day.objects.filter(user=user)
-    muscle_group = self.kwargs.get('muscle_group', None)
+    muscle_group = self.request.POST.get('muscle_group', None)
     if muscle_group:
         workouts_response = get_workouts(muscle_group)
         if workouts_response.status_code == 200:
@@ -82,7 +82,10 @@ class SetGoals(UpdateView):
     fields = ['workout_goal', 'calorie_goal']
 
 def user_dashboard(request):
-    return render(request, 'dashboard.html')
+  return render(request, 'dashboard.html')
+
+def meal_log(request):
+  return render(request, 'meal_log.html')
 
 def workout_log(request):
     workouts = Workout.objects.all()

@@ -15,7 +15,6 @@ class MuscleGroup(Enum):
     LEGS = "Legs"
     ABS = "Abs"
     STRETCHING = "Stretching"
-    WARM_UP = "Warm Up"
     LATS = "Lats"
     HAMSTRING = "Hamstring"
     CALVES = "Calves"
@@ -55,12 +54,12 @@ class Meal(models.Model):
     
 
 class Workout(models.Model):
-    name = models.CharField(max_length=100,null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     muscle_group = models.CharField(
         max_length=20,
         choices=[(key.name, key.value) for key in MuscleGroup],
-        default=MuscleGroup.BICEPS.value
+        # default=MuscleGroup.BICEPS.value
     )
     sets = models.IntegerField(null=True, blank=True)
     reps = models.IntegerField(null=True, blank=True)
