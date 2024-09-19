@@ -1,7 +1,7 @@
 # <div align="center" id="logo"> ![FittrackrLogo](https://imgur.com/2m8UXn7.png) </div>
 
   ## ℹ️ Description
-  Welcome to Fittrackr :muscle:! Track your calories, meals, and workouts and GET FIT!
+  Welcome to Fittrackr :muscle:! Fittrrackr is a fitness tracking app that monitors your meals and workouts by calculating both caloric intake and loss. It helps users stay on top of their health goals by providing real-time calorie counts and allowing them to set personalized calorie and workout goals.
 
   ## 📸  Screenshots
   Insert Screenshots Here!
@@ -35,5 +35,5 @@
   - **Benefit**: 
 
 - **Share**
-  - **Feature**: Ability to share goals with friends, and comment on each others’ goals
+  - **Feature**: Ability to share goals with friends, and comment on each others’ goals.
   - **Benefit**: 
