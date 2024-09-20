@@ -13,42 +13,56 @@
         <h1>Welcome to Fittrrackr</h1>
     {% endif %}    
     <div>
-        <form method="GET" action="{% url 'user_dashboard' %}">
-            <label for="workout_date">Date:</label>
-            <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}">
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <form method="GET" action="{% url 'user_dashboard' %}">
+                <label for="workout_date">Date:</label>
+                <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            <h2>Calories Remaining{{ selected_date|date:'Y-m-d' }}</h2>
+            <p>
+                Goal: {{calorie_goal}}  - Meals: {{ total_meal_calories }} + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
+            </p>
+        </div>
+        <div>
+            <h3> Calorie Goal</h3>
+            <p>{{total_meal_calories}}/{{calorie_goal}} Calories</p>
+        </div>   
+        <div>
+            <h3> Workout Goal</h3>
+            <p>{{todays_workout_count}}/{{workout_goal}} Workouts</p>
+        </div>   
+        <div>
+            <h3> Meal Goal</h3>
+            <p>{{todays_meal_count}}/{{meal_goal}} Meals</p>
+        </div>   
     </div>
     <div>
-        <h2>Caloric Summary for {{ selected_date|date:'Y-m-d' }}</h2>
-        <p>
-             Goal:  + Meals: {{ total_meal_calories }} - Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
-        </p>
-    </div>
+        <div>
+            <h2>Meals</h2>
+            <ul>
+                {% for meal in recent_meals %}
+                    <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
+                {% empty %}
+                    <li>No recent meal entries available</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'meal_log' %}">See All -> </a>
+        </div>
+        <div>
+            <h2>Workouts</h2>
+            <ul>
+                {% for workout in recent_workouts %}
+                    <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
+                {% empty %}
+                    <li>No recent workouts available</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'workout_log' %}">See All -> </a>
+        </div>
     <div>
-        <h2>Meals</h2>
-        <ul>
-            {% for meal in recent_meals %}
-                <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
-            {% empty %}
-                <li>No recent meal entries available</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'meal_log' %}">See All -> </a>
-        <a href="{% url 'workout_log' %}">Workout Log</a>
-        <a href="{% url 'meal_log' %}">Meal Log</a>
-    </div>
-    <div>
-        <h2>Workouts</h2>
-        <ul>
-        {% for workout in recent_workouts %}
-            <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
-        {% empty %}
-            <li>No recent workouts available</li>
-        {% endfor %}
-        </ul>
-    <a href="{% url 'workout_log' %}">See All -> </a>
-    </div>
 
 
 {% endblock content %}
