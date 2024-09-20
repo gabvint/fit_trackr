@@ -18,6 +18,8 @@
 
     </div>
     
+    <a href="{% url 'meal_update' meal.id %}">Update</a>
+    <a href="{% url 'meal_delete' meal.id %}">Delete</a>
     <a href="{% url 'meal_log' %}">Back</a>
 
 </section>
