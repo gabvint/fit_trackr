@@ -103,6 +103,14 @@ class SetGoals(UpdateView):
     model = NewUser
     fields = ['workout_goal', 'calorie_goal']
 
+class MealUpdate(UpdateView):
+    model = Meal
+    fields = ['name', 'meal', 'day', 'calories', 'notes']
+    
+class MealDelete(DeleteView):
+    model = Meal
+    success_url = '/meallog/'
+
 def user_dashboard(request):
   return render(request, 'dashboard.html')
 

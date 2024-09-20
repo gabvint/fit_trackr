@@ -59,7 +59,7 @@ class Meal(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("user_dashboard")
+        return reverse("meal_detail", kwargs={'meal_id' : self.id })
     
 
 class Workout(models.Model):
