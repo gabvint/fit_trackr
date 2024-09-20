@@ -29,7 +29,7 @@ class CustomUserChangeForm(UserChangeForm):
 class WorkoutForm(forms.ModelForm):
   class Meta:
     model = Workout
-    fields = ['name', 'day', 'muscle_group', 'sets', 'reps', 'calorie_lost', 'notes']
+    fields = ['day', 'muscle_group', 'name', 'sets', 'reps', 'calorie_lost', 'notes']
   
   def __init__(self, *args, **kwargs):
     available_days = kwargs.pop('available_days', None)

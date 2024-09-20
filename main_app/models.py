@@ -37,7 +37,7 @@ class Day(models.Model):
     user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.date.strftime('%Y-%m-%d')
+        return self.date.strftime('%m-%d-%Y')
 
 class Meal(models.Model):
     name = models.CharField()
