@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+
+{% block head %}
+{% tailwind_css %}
+{% endblock head %}
+
+
+{% block content %}
+
+<div>
+    <p>Are you sure you want to delete this workout?</p>
+</div>
+
+<form action="" method="post" class="form">
+    {% csrf_token %}
+
+    <a href="{% url 'workout_detail' workout.id %}">Cancel</a>
+    <button type="submit">Delete</button>
+</form>
+
+
+{% endblock content %}
+
