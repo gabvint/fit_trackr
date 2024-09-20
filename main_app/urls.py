@@ -16,4 +16,6 @@ urlpatterns = [
   path('workoutlog/<int:workout_id>/', views.workout_detail, name="workout_detail"),
   path('meallog/', views.meal_log, name="meal_log"),
   path('meallog/<int:meal_id>/', views.meal_detail, name="meal_detail"),
+  path('meallog/<int:pk>/update/', views.MealUpdate.as_view(), name='meal_update'),
+  path('meallog/<int:pk>/delete/', views.MealDelete.as_view(), name='meal_delete')
 ]
