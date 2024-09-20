@@ -144,7 +144,7 @@ def user_dashboard(request):
 
   total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories') or 0
   total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calorie_lost') or 0
-  net_calories = total_meal_calories - total_workout_calories
+  net_calories = calorie_goal - total_meal_calories + total_workout_calories
   todays_meal_count = todays_meals.count()
   todays_workout_count = todays_workouts.count()
 
