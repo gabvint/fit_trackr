@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+
+{% block head %}
+{% tailwind_css %}
+{% endblock head %}
+
+
+{% block content %}
+
+<section class=' mt-7'>
+    <div>
+
+       <p>Meal ate on: {{ meal.day }}</p>
+       <p>{{ meal.name }}</p>
+       <p>Meal: {{ meal.get_meal_display }}</p>
+       <p>Calories Lost: {{ meal.calorie_lost }}</p>
+       <p>Notes: {{ meal.notes }}</p>
+
+    </div>
+    
+    <a href="{% url 'meal_log' %}">Back</a>
+
+</section>
+
+{% endblock content %}
