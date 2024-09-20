@@ -11,11 +11,14 @@
 
     <section>
         {% for workout in workouts %}
+
             <div class=" flex gap-2">
                 <p>{{ workout.day }}</p>
-                
+
                 <a href="{% url 'workout_detail' workout.id %}">View</a>
+
             </div>
+            
         {% endfor %}
     </section>
     <a href="{% url 'user_dashboard' %}">Back to Home</a>

@@ -8,7 +8,10 @@
 
 {% block content %}
 
-<section class=' mt-7'>
+
+<a class=' text-red-600' href="{% url 'workout_log' %}">Back</a>
+
+<div class=' mt-7'>
     <div>
 
        <p> {{ workout.day }}</p>
@@ -21,8 +24,12 @@
 
     </div>
     <a href="{% url 'workout_log' %}">Back</a>
+</div>
 
-</section>
+<div>
+    <a href="{% url 'workout_update' workout.id %}">Edit</a>
+    <a href="{% url 'workout_delete' workout.id %}">Delete</a>
+</div>
 
 {% endblock content %}
 

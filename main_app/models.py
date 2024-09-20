@@ -59,7 +59,7 @@ class Meal(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("user_dashboard")
+        return reverse("meal_detail", kwargs={'meal_id' : self.id })
     
 
 class Workout(models.Model):
@@ -79,5 +79,5 @@ class Workout(models.Model):
         return self.muscle_group
     
     def get_absolute_url(self):
-        return reverse("workout_log")
+        return reverse("workout_detail", kwargs={'workout_id': self.id})
 
