@@ -98,6 +98,15 @@ class WorkoutList(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+    
+    
+class WorkoutUpdate(UpdateView):
+    model = Workout
+    fields = '__all__'
+    
+class WorkoutDelete(DeleteView):
+    model = Workout
+    success_url = '/workoutlog/'
 
 class SetGoals(UpdateView):
     model = NewUser
