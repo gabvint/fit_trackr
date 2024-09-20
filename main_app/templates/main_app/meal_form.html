@@ -1,18 +1,54 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block head %}
 
-{% endblock head %}
-
-
+{% endblock %}
 
 {% block content %}
+<form method="post" action="{% url 'create_meals' %}">
+    {% csrf_token %}
+    <table>{{ form.as_p }}</table>
+    
+    <input type="text" id="food-search" name="name" placeholder="Search for a food..." autocomplete="off">
+  
+    <div id="food-options" style="border: 1px solid #ccc; display: none; position: absolute; background-color: white; z-index: 1000;"></div>
+    
+    <button type="submit" class="btn submit">Submit</button>
+</form>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>{{ form.as_table }}</table>
-        <button type="submit" class="btn submit">Done!</button>
-    </form>
+<script>
+    const searchField = document.getElementById('food-search')
+    const foodOptions = document.getElementById('food-options')
 
-{% endblock content %}
+    searchField.addEventListener('input', function() {
+        const query = searchField.value;
+        if (query.length > 2) {
+            fetch(`/meals/search/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        let options = data.map(food => 
+                            `<div class="food-option" data-calories="${food.calories}">${food.name}</div>`
+                        ).join('')
+                        foodOptions.innerHTML = options
+                        foodOptions.style.display = 'block'
+                    } else {
+                        foodOptions.style.display = 'none'
+                    }
+                });
+        } else {
+            foodOptions.style.display = 'none'
+        }
+    });
+    foodOptions.addEventListener('click', function(event) {
+        if (event.target.classList.contains('food-option')) {
+            const selectedFood = event.target;
+            searchField.value = selectedFood.innerText
+            const calories = selectedFood.getAttribute('data-calories')
+            console.log(`Calories: ${calories}`)
+            foodOptions.style.display = 'none'
+        }
+    })
+</script>
+{% endblock %}
