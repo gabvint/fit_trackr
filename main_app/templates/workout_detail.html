@@ -9,8 +9,6 @@
 {% block content %}
 
 
-<a class=' text-red-600' href="{% url 'workout_log' %}">Back</a>
-
 <div class=' mt-7'>
     <div>
 
@@ -23,7 +21,7 @@
        <p>Notes: {{ workout.notes }}</p>
 
     </div>
-    <a href="{% rl 'workout_log' %}">Back</a>
+    <a href="{% url 'workout_log' %}">Back</a>
 </div>
 
 <div id='workout-info'>
