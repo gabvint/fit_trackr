@@ -14,6 +14,7 @@
             <div class=" flex gap-2">
                 <p>{{ meal.get_meal_display }}</p>
                 <p>{{ meal.day }}</p>
+                <p>{{ meal.calories }}</p>
                 
                 <a href="{% url 'meal_info' meal.id %}">Details</a>
             </div>
