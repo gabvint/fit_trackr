@@ -12,12 +12,11 @@
     <section>
         {% for workout in workouts %}
             <div class=" flex gap-2">
-                <p>{{ workout.muscle_group }}</p>
+                <p>{{ workout.get_muscle_group_display }}</p>
                 <p>{{ workout.name }}</p>
                 <p>{{ workout.day }}</p>
-                <p>{{ workout.sets }}</p>
-                <p>{{ workout.reps }}</p>
-                <p>{{ workout.notes }}</p>
+                
+                <a href="{% url 'workout_detail' workout.id %}">View</a>
             </div>
         {% endfor %}
     </section>
