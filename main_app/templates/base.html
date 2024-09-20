@@ -15,6 +15,13 @@
     <nav>
       <ul>
         {% if user.is_authenticated %}
+        {% comment %} <li>
+          {% if user.is_authenticated %}
+        <h1>{{ user.username }}'s <img src='https://imgur.com/2m8UXn7.png' /></h1>
+    {% else %}
+        <h1>Welcome to Fittrrackr</h1>
+    {% endif %}  
+        </li> {% endcomment %}
           <li class=" text-2xl text-red-500"><a href="{% url "set_goals" user.id %}">Goals</a></li>
           <li><a href="{% url "create_workout" %}">Add Workout</a></li>
           <li><a href="{% url "create_meals" %}">Add Meal</a></li>

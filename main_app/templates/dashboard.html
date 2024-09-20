@@ -20,6 +20,12 @@
         </form>
     </div>
     <div>
+        <h2>Caloric Summary for {{ selected_date|date:'Y-m-d' }}</h2>
+        <p>
+             Goal:  + Meals: {{ total_meal_calories }} - Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
+        </p>
+    </div>
+    <div>
         <h2>Meals</h2>
         <ul>
             {% for meal in recent_meals %}

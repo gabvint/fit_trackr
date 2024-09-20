@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
 from datetime import datetime
+from django.db.models import Sum 
 
 
 
@@ -128,10 +129,21 @@ def user_dashboard(request):
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
         recent_workouts = Workout.objects.filter(day__date=selected_date).order_by('-day')[:2]
         recent_meals = Meal.objects.filter(day__date=selected_date).order_by('-id')[:2]
+        todays_meals = Meal.objects.filter(day__date=selected_date)
+        todays_workouts = Workout.objects.filter(day__date=selected_date)
   else:
         recent_workouts = Workout.objects.order_by('-day')[:2]
         recent_meals = Meal.objects.order_by('-id')[:2]
-  return render(request, 'dashboard.html', {'recent_meals': recent_meals, 'recent_workouts': recent_workouts})
+        today = datetime.today().date()
+        todays_meals = Meal.objects.filter(day__date=today)
+        todays_workouts = Workout.objects.filter(day__date=today)
+  total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories', 0)
+  total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calories', 0)
+  net_calories = total_meal_calories - total_workout_calories
+  return render(request, 'dashboard.html', {'recent_meals': recent_meals, 'recent_workouts': recent_workouts, 'total_meal_calories': total_meal_calories,
+        'total_workout_calories': total_workout_calories,
+        'net_calories': net_calories,
+        'selected_date': selected_date})
 
 def meal_log(request):
    user = request.user
