@@ -111,9 +111,9 @@ def meal_log(request):
    meals = Meal.objects.filter(day__user=user)
    return render(request, 'meal_log.html', { 'meals': meals })
 
-def meal_info(request, meal_id):
+def meal_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
-    return render(request, 'meal_info.html', { 'meal': meal })
+    return render(request, 'meal_detail.html', { 'meal': meal })
 
 def workout_log(request):
     user = request.user
