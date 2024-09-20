@@ -16,9 +16,10 @@
                 <p>{{ meal.day }}</p>
                 <p>{{ meal.calories }}</p>
                 
-                <a href="{% url 'meal_info' meal.id %}">Details</a>
+                <a href="{% url 'meal_info' meal.id %}">View</a>
             </div>
         {% endfor %}
     </section>
+    <a href="{% url 'user_dashboard' %}">Back to Home</a>
 
 {% endblock content %}

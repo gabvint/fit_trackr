@@ -104,7 +104,9 @@ class SetGoals(UpdateView):
     fields = ['workout_goal', 'calorie_goal']
 
 def user_dashboard(request):
-  return render(request, 'dashboard.html')
+  recent_workouts = Workout.objects.order_by('-day')[:2]
+  recent_meals = Meal.objects.order_by('-id')[:2]
+  return render(request, 'dashboard.html', {'recent_meals': recent_meals, 'recent_workouts': recent_workouts})
 
 def meal_log(request):
    user = request.user

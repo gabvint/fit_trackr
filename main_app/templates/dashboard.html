@@ -7,14 +7,30 @@
 
 {% block content %}
 
-    <h1 class=" text-8xl">Hello This is the dashboard</h1>
-    <h2>calories</h2>
-    <h2>Workouts</h2>
+{% if user.is_authenticated %}
+    <h1>{{ user.username }}'s Fittrrackr</h1>
+{% else %}
+    <h1>Welcome to Fittrrackr</h1>
+{% endif %}    <div>
+        <ul>
+        {% for workout in recent_workouts %}
+            <li>{{ workout.name }} on {{ workout.day }} - {{ workout.calorie_lost }} calories</li>
+        {% empty %}
+            <li>No recent workouts available</li>
+        {% endfor %}
+        </ul>
+    <a href="{% url 'workout_log' %}">See All -> </a>
+    </div>
 
     <div>
-
-        <a href="{% url 'workout_log' %}">Workout Log</a>
-        <a href="{% url 'meal_log' %}">Meal Log</a>
+        <ul>
+            {% for meal in recent_meals %}
+                <li>{{ meal.meal }} on {{ meal.day }} - {{ meal.calories }} calories</li>
+            {% empty %}
+                <li>No recent meal entries available</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'meal_log' %}">See All -> </a>
     </div>
 
 {% endblock content %}
