@@ -70,5 +70,5 @@ class Workout(models.Model):
         return self.muscle_group
     
     def get_absolute_url(self):
-        return reverse("user_dashboard")
+        return reverse("workout_log")
 
