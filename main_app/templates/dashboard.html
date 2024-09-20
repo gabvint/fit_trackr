@@ -14,7 +14,7 @@
 {% endif %}    <div>
         <ul>
         {% for workout in recent_workouts %}
-            <li>{{ workout.name }} on {{ workout.day }} - {{ workout.calorie_lost }} calories</li>
+            <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
         {% empty %}
             <li>No recent workouts available</li>
         {% endfor %}
@@ -25,7 +25,7 @@
     <div>
         <ul>
             {% for meal in recent_meals %}
-                <li>{{ meal.meal }} on {{ meal.day }} - {{ meal.calories }} calories</li>
+                <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
             {% empty %}
                 <li>No recent meal entries available</li>
             {% endfor %}
