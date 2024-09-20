@@ -15,4 +15,5 @@ urlpatterns = [
   path('workoutlog/', views.workout_log, name="workout_log"),
   path('workoutlog/<int:workout_id>/', views.workout_detail, name="workout_detail"),
   path('meallog/', views.meal_log, name="meal_log"),
+  path('meallog/<int:meal_id>/', views.meal_info, name="meal_info"),
 ]

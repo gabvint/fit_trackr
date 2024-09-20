@@ -16,8 +16,9 @@
       <ul>
         {% if user.is_authenticated %}
           <li class=" text-2xl text-red-500"><a href="{% url "set_goals" user.id %}">Goals</a></li>
-          <li><a href="{% url "create_workout" %}">Workouts</a></li>
-          <li><a href="{% url "create_meals" %}">Meals</a></li>
+          <li><a href="{% url "create_workout" %}">Add Workout</a></li>
+          <li><a href="{% url "create_meals" %}">Add Meal</a></li>
+          <li><a href="{% url "user_dashboard" %}">Home</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
