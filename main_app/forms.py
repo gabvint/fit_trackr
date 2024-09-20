@@ -9,9 +9,10 @@ class CustomUserCreationForm(UserCreationForm):
   email = forms.EmailField(max_length=150)
   calorie_goal=forms.IntegerField()
   workout_goal=forms.IntegerField()
+  meal_goal=forms.IntegerField()
   class Meta:
     model = NewUser
-    fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal', 'password1', 'password2')
+    fields = ('username', 'first_name', 'last_name', 'email', 'meal_goal', 'calorie_goal', 'workout_goal', 'password1', 'password2')
     
     
 class CustomUserChangeForm(UserChangeForm):
@@ -23,7 +24,7 @@ class CustomUserChangeForm(UserChangeForm):
   workout_goal=forms.IntegerField()
   class Meta:
     model = NewUser
-    fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal')
+    fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal', 'meal_goal')
     
     
 class WorkoutForm(forms.ModelForm):
