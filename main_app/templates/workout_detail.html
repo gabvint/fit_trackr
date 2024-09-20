@@ -9,8 +9,6 @@
 {% block content %}
 
 
-<a class=' text-red-600' href="{% url 'workout_log' %}">Back</a>
-
 <div class=' mt-7'>
     <div>
 
@@ -23,13 +21,48 @@
        <p>Notes: {{ workout.notes }}</p>
 
     </div>
-    <a href="{% rl 'workout_log' %}">Back</a>
+    <a href="{% url 'workout_log' %}">Back</a>
+</div>
+
+<div id='workout-info'>
+
 </div>
 
 <div>
     <a href="{% url 'workout_update' workout.id %}">Edit</a>
     <a href="{% url 'workout_delete' workout.id %}">Delete</a>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_muscle_group').change(function() {
+                const muscleGroup = $(this).val();
+                
+                $.ajax({
+                    url: "{% url 'get_workouts_by_muscle_group' %}",
+                    data: {
+                        'muscle_group': muscleGroup
+                    },
+                    success: function(response) {
+                        const workoutSelect = $('#id_name');
+                        workoutSelect.empty();
+                        
+                        workoutSelect.append($('<option>', { 
+                            value: '',
+                            text : 'Select a workout'
+                        }))
+                        response.workouts.forEach(function(workout) {
+                            workoutSelect.append($('<option>', { 
+                                value: workout,
+                                text : workout 
+                            }))
+                        })
+                    }
+                })
+            })
+        })
+    </script>
 
 {% endblock content %}
 
