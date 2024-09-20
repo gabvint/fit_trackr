@@ -30,23 +30,20 @@
                         const workoutSelect = $('#id_name');
                         workoutSelect.empty();
                         
-                        // Add a default option
                         workoutSelect.append($('<option>', { 
                             value: '',
                             text : 'Select a workout'
-                        }));
-                        
-                        // Add the workout options returned by the API
+                        }))
                         response.workouts.forEach(function(workout) {
                             workoutSelect.append($('<option>', { 
                                 value: workout,
                                 text : workout 
-                            }));
-                        });
+                            }))
+                        })
                     }
-                });
-            });
-        });
+                })
+            })
+        })
     </script>
 {% endblock content %}
 

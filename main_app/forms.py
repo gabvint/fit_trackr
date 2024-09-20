@@ -66,4 +66,10 @@ class MealForm(forms.ModelForm):
     super().__init__(*args, **kwargs)
     if available_days is not None:
       self.fields['day'].queryset = available_days
+    self.fields['name'].widget.attrs.update({
+            'id': 'food-search',
+            'placeholder': 'Search for a food...',
+            'autocomplete': 'off'
+        })
+
   

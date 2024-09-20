@@ -23,6 +23,12 @@ class MuscleGroup(Enum):
     SHOULDERS = "Shoulders"
     GLUTES = "Glutes"
 
+MEALS = (
+    ('B', 'Breakfast'),
+    ('L', 'Lunch'),
+    ('D', 'Dinner'),
+    ('S', 'Snack')
+)
 
 class NewUser(AbstractUser):
     workout_goal = models.IntegerField(null=True, blank=True)
@@ -40,8 +46,11 @@ class Day(models.Model):
         return self.date.strftime('%m-%d-%Y')
 
 class Meal(models.Model):
-    name = models.CharField()
-    meal = models.CharField()
+    name = models.CharField(max_length = 100)
+    meal = models.CharField('Select Meal',
+        max_length=1,
+        choices=MEALS,
+        default=MEALS[0][0])
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     calories = models.IntegerField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
