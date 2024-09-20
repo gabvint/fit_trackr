@@ -7,14 +7,43 @@
 
 {% block content %}
 
-    <h1 class=" text-8xl">Hello This is the dashboard</h1>
-    <h2>calories</h2>
-    <h2>Workouts</h2>
-
+    {% if user.is_authenticated %}
+        <h1>{{ user.username }}'s Fittrrackr</h1>
+    {% else %}
+        <h1>Welcome to Fittrrackr</h1>
+    {% endif %}    
     <div>
+        <form method="GET" action="{% url 'user_dashboard' %}">
+            <label for="workout_date">Date:</label>
+            <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h2>Meals</h2>
+        <ul>
+            {% for meal in recent_meals %}
+                <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
+            {% empty %}
+                <li>No recent meal entries available</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'meal_log' %}">See All -> </a>
         <a href="{% url 'workout_log' %}">Workout Log</a>
         <a href="{% url 'meal_log' %}">Meal Log</a>
     </div>
+    <div>
+        <h2>Workouts</h2>
+        <ul>
+        {% for workout in recent_workouts %}
+            <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
+        {% empty %}
+            <li>No recent workouts available</li>
+        {% endfor %}
+        </ul>
+    <a href="{% url 'workout_log' %}">See All -> </a>
+    </div>
+
 
 {% endblock content %}
 

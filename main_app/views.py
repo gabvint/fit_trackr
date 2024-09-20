@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
+from datetime import datetime
 
 
 
@@ -121,7 +122,16 @@ class MealDelete(DeleteView):
     success_url = '/meallog/'
 
 def user_dashboard(request):
-  return render(request, 'dashboard.html')
+  selected_date = request.GET.get('workout_date', None)
+
+  if selected_date:
+        selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
+        recent_workouts = Workout.objects.filter(day__date=selected_date).order_by('-day')[:2]
+        recent_meals = Meal.objects.filter(day__date=selected_date).order_by('-id')[:2]
+  else:
+        recent_workouts = Workout.objects.order_by('-day')[:2]
+        recent_meals = Meal.objects.order_by('-id')[:2]
+  return render(request, 'dashboard.html', {'recent_meals': recent_meals, 'recent_workouts': recent_workouts})
 
 def meal_log(request):
    user = request.user
