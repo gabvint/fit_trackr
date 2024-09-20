@@ -88,8 +88,13 @@ def meal_log(request):
   return render(request, 'meal_log.html')
 
 def workout_log(request):
-    workouts = Workout.objects.all()
-    return render(request, 'workout_log.html', {'workouts': workouts})
+    user = request.user
+    workouts = Workout.objects.filter(day__user=user)
+    return render(request, 'workout_log.html', { 'workouts': workouts })
+
+def workout_detail(request, workout_id):
+    workout = Workout.objects.get(id=workout_id)
+    return render(request, 'workout_detail.html', { 'workout': workout })
     
 def signup(request):
     error_message = ''

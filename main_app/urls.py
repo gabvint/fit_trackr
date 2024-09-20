@@ -12,5 +12,6 @@ urlpatterns = [
   path('get_workouts/', views.get_workouts_by_muscle_group, name='get_workouts_by_muscle_group'),
   path('meals/create/', views.CreateMeals.as_view(), name="create_meals"),
   path('workoutlog/', views.workout_log, name="workout_log"),
+  path('workoutlog/<int:workout_id>/', views.workout_detail, name="workout_detail"),
   path('meallog/', views.meal_log, name="meal_log"),
 ]
