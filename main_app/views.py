@@ -4,7 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
-from .api import get_workouts, get_foods
+from .api import get_workouts
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
@@ -54,27 +54,27 @@ class CreateMeals(CreateView):
         kwargs['available_days'] = Day.objects.filter(user=user)
         return kwargs
     
-def search_food(request):
-    food_search = request.GET.get('q', None)
+# def search_food(request):
+#     food_search = request.GET.get('q', None)
     
-    if not food_search:
-        return JsonResponse([], safe=False)
+#     if not food_search:
+#         return JsonResponse([], safe=False)
 
-    food_search_response = get_foods(food_search)
+#     food_search_response = get_foods(food_search)
     
-    if food_search_response.status_code == 200:
-        data = food_search_response.json()
-        food_items = [
-            {
-                "name": item['description'],
-                "calories": next((nutrient['value'] for nutrient in item['foodNutrients'] if nutrient['nutrientName'] == "Calories"), 0)
-            }
-            for item in data.get('foods', [])
-        ]
-        return JsonResponse(food_items, safe=False)
-    else:
-        print(f"Error fetching foods: {food_search_response.status_code}")
-        return JsonResponse([], safe=False)
+#     if food_search_response.status_code == 200:
+#         data = food_search_response.json()
+#         food_items = [
+#             {
+#                 "name": item['description'],
+#                 "calories": next((nutrient['value'] for nutrient in item['foodNutrients'] if nutrient['nutrientName'] == "Calories"), 0)
+#             }
+#             for item in data.get('foods', [])
+#         ]
+#         return JsonResponse(food_items, safe=False)
+#     else:
+#         print(f"Error fetching foods: {food_search_response.status_code}")
+#         return JsonResponse([], safe=False)
 
 class WorkoutList(CreateView):
     model = Workout
