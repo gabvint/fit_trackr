@@ -20,9 +20,9 @@
         </form>
     </div>
     <div>
-        <h2>Caloric Summary for {{ selected_date|date:'Y-m-d' }}</h2>
+        <h2>Calories Remaining{{ selected_date|date:'Y-m-d' }}</h2>
         <p>
-             Goal:  + Meals: {{ total_meal_calories }} - Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
+             Goal: {{calorie_goal}}  - Meals: {{ total_meal_calories }} + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
         </p>
     </div>
     <div>
@@ -35,8 +35,6 @@
             {% endfor %}
         </ul>
         <a href="{% url 'meal_log' %}">See All -> </a>
-        <a href="{% url 'workout_log' %}">Workout Log</a>
-        <a href="{% url 'meal_log' %}">Meal Log</a>
     </div>
     <div>
         <h2>Workouts</h2>

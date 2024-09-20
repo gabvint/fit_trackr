@@ -124,6 +124,8 @@ class MealDelete(DeleteView):
 
 def user_dashboard(request):
   selected_date = request.GET.get('workout_date', None)
+  user = request.user
+  calorie_goal = user.calorie_goal 
 
   if selected_date:
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
@@ -139,10 +141,12 @@ def user_dashboard(request):
         todays_workouts = Workout.objects.filter(day__date=today)
   total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories', 0)
   total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calories', 0)
-  net_calories = total_meal_calories - total_workout_calories
+  net_calories = calorie_goal - total_meal_calories + total_workout_calories
+
   return render(request, 'dashboard.html', {'recent_meals': recent_meals, 'recent_workouts': recent_workouts, 'total_meal_calories': total_meal_calories,
         'total_workout_calories': total_workout_calories,
         'net_calories': net_calories,
+        'calorie_goal': calorie_goal,
         'selected_date': selected_date})
 
 def meal_log(request):
