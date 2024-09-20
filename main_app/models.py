@@ -33,6 +33,7 @@ MEALS = (
 class NewUser(AbstractUser):
     workout_goal = models.IntegerField(null=True, blank=True)
     calorie_goal = models.IntegerField(null=True, blank=True)
+    meal_goal = models.IntegerField(null=True, blank=True)
     def get_absolute_url(self):
         return reverse("user_dashboard")
 
