@@ -1,6 +1,23 @@
 from django import forms # type: ignore
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import NewUser, Workout, Meal
+from django.contrib.auth.forms import AuthenticationForm
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
+            'placeholder': 'Username'
+        })
+    )
+    password = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
+            'placeholder': 'Password'
+        })
+    )
 
 class CustomUserCreationForm(UserCreationForm):
   username = forms.CharField(max_length=150)
