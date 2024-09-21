@@ -9,10 +9,47 @@
 
 {% block content %}
 
-    <form action="" method="post" id='workout-form'>
+    <form action="" method="post" id="workout-form" class="w-96 md:w-[450px] mx-auto bg-white p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial">
         {% csrf_token %}
-        <table>{{ form.as_table }}</table>
-        <button type="submit" class="btn submit">Submit</button>
+        
+        <div class='mb-4'>
+            <label for="{{ form.day.id_for_label }}" class="block text-grey text-base font-bold mb-2">Day:</label>
+            {{ form.day }}
+        </div>
+        <div class='flex gap-5'>
+            <div class='mb-4'>
+                <label for="{{ form.muscle_group.id_for_label }}" class="block text-grey text-base font-bold mb-2">Muscle Group:</label>
+                {{ form.muscle_group }}
+            </div>
+            <div class='mb-4'>
+                <label for="{{ form.name.id_for_label }}" class="block text-grey text-base font-bold mb-2">Workout:</label>
+                {{ form.name }}
+            </div>
+        </div>
+        <div class='flex gap-5'>
+            <div class='mb-4'>
+                <label for="{{ form.sets.id_for_label }}" class="block text-grey text-base font-bold mb-2"># of Sets:</label>
+                {{ form.sets }}
+            </div>
+            <div class='mb-4'>
+                <label for="{{ form.reps.id_for_label }}" class="block text-grey text-base font-bold mb-2"># of Reps:</label>
+                {{ form.reps }}
+            </div>
+        </div>
+        <div class='mb-4'>
+            <label for="{{ form.calorie_lost.id_for_label }}" class="block text-grey text-base font-bold mb-2">Calorie Lost:</label>
+            {{ form.calorie_lost }}
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.notes.id_for_label }}" class="block text-grey text-base font-bold mb-2">Notes:</label>
+            {{ form.notes }}
+        </div>
+        <button type="submit" class="relative rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+<span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+<span class='relative'>Submit</span>
+        </button>
     </form>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
