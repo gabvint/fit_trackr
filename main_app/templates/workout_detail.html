@@ -7,39 +7,61 @@
 
 
 {% block content %}
-
-
-<a class=' text-red-600' href="{% url 'workout_log' %}">Back</a>
-
-<div class=' mt-7'>
-    <div>
-
-       <p> {{ workout.day }}</p>
-       <p>{{ workout.name }}</p>
-       <p>Targets the: {{ workout.get_muscle_group_display }}</p>
-       <p>Sets: {{ workout.sets }}</p>
-       <p>Reps: {{ workout.reps }}</p>
-       <p>Calorie Lost: {{ workout.calorie_lost }}</p>
-       <p>Notes: {{ workout.notes }}</p>
-
-    </div>
-    <a href="{% url 'workout_log' %}">Back</a>
+<secton class='font-quattrocento'>
+<div class='flex justify-center m-5 text-4xl'>
+    <h1>Workout Details</h1>
 </div>
-
+<div class='flex justify-center mt-5'>
+    <table>
+        <tbody>
+            <tr>
+                <th class="text-right pr-5">Date:</th>
+                <td>{{ workout.day }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5">Workout:</th>
+                <td>{{ workout.name }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5">Targets:</th>
+                <td>{{ workout.get_muscle_group_display }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5"># of Sets:</th>
+                <td>{{ workout.sets }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5"># of Reps:</th>
+                <td>{{ workout.reps }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5">Calories Lost:</th>
+                <td>{{ workout.calorie_lost }}</td>
+            </tr>
+            <tr>
+                <th class="text-right pr-5">Notes:</th>
+                <td>{{ workout.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div id='workout-info'>
 {% comment %} {% detail in workout_details %}
     {{detail.Muscles}}
     {{detail.Workout}}
     {{detail.Intensity_Level}}
     {{}} {% endcomment %}
-
 </div>
 
-<div>
-    <a href="{% url 'workout_update' workout.id %}">Edit</a>
-    <a href="{% url 'workout_delete' workout.id %}">Delete</a>
-</div>
 
+<div class='flex justify-center mt-5 gap-5'>
+    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_update' workout.id %}" >Edit</a></button>
+    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_delete' workout.id %}" >Delete</a></button>
+</div>
+<div class='flex justify-center mt-5'>
+    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_log' %}">Back</a></button>
+</div>
+</secton>
 {% endblock content %}
 
 

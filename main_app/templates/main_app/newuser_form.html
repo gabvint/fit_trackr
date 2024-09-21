@@ -8,8 +8,8 @@
 
 
 {% block content %}
-
-    <form action="" method="post" class="w-96 md:w-[450px] mx-auto bg-white p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial">
+<div class='min-h-screen grid place-items-center'>
+    <form action="" method="post" class="w-96 md:w-[450px] mx-auto bg-white p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial grid place-items-center">
         {% csrf_token %}
 
         <div class="mb-4">
@@ -26,12 +26,12 @@
         </div>
 
         <button type="submit" class="relative rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
-    <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-    opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
-    <span class='relative'>Submit</span>
-   </button>
+            hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+            <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+            opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+            <span class='relative'>Submit</span>
+        </button>
     </form>
+</div>
 
-    
 {% endblock content %}
