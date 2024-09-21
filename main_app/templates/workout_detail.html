@@ -27,6 +27,11 @@
 </div>
 
 <div id='workout-info'>
+{% comment %} {% detail in workout_details %}
+    {{detail.Muscles}}
+    {{detail.Workout}}
+    {{detail.Intensity_Level}}
+    {{}} {% endcomment %}
 
 </div>
 
@@ -34,6 +39,7 @@
     <a href="{% url 'workout_update' workout.id %}">Edit</a>
     <a href="{% url 'workout_delete' workout.id %}">Delete</a>
 </div>
+
 {% endblock content %}
 
 
