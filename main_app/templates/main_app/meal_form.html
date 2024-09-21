@@ -6,21 +6,20 @@
     {% csrf_token %}
     
     <div class="mb-4">
-      <label for="{{ form.name.id_for_label }}" class="block text-grey text-base font-bold mb-2">Name:</label>
-      {{ form.name }}
-    </div>
+        <label for="{{ form.name.id_for_label }}" class="block text-grey text-base font-bold mb-2">Name:</label>
+        {{ form.name }}
+      </div>
 
     <div class=" flex gap-5">
         <div class="mb-4">
-        <label for="{{ form.meal.id_for_label }}" class="block text-grey text-base font-bold mb-2">Select Meal:</label>
-        {{ form.meal }}
+            <label for="{{ form.meal.id_for_label }}" class="block text-grey text-base font-bold mb-2">Select Meal:</label>
+            {{ form.meal }}
         </div>
     
         <div class="mb-4">
-        <label for="{{ form.day.id_for_label }}" class="block text-grey text-base font-bold mb-2">Day:</label>
-        {{ form.day }}
+            <label for="{{ form.day.id_for_label }}" class="block text-grey text-base font-bold mb-2">Day:</label>
+            {{ form.day }}
         </div>
-
     </div>
     
     <div class="mb-4">
@@ -29,19 +28,17 @@
     </div>
 
     <div class="mb-4">
-      <label for="{{ form.notes.id_for_label }}" class="block text-grey text-base font-bold mb-2">Notes:</label>
-      {{ form.notes }}
-    
+        <label for="{{ form.notes.id_for_label }}" class="block text-grey text-base font-bold mb-2">Notes:</label>
+        {{ form.notes }}
     </div>
 
+   
     <button type="submit" class="relative rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-     hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
     <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
     opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
     <span class='relative'>Submit</span>
-    </button>
-
-    
+   </button>
 </form>
 
 {% endblock content %}

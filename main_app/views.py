@@ -11,14 +11,15 @@ from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
 from datetime import datetime
 from django.db.models import Sum 
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Home(LoginView):
   template_name = 'home.html'
   
   
-class CreateWorkout(CreateView):
+class CreateWorkout(LoginRequiredMixin, CreateView):
   model = Workout
   form_class = WorkoutForm
   
@@ -46,7 +47,7 @@ def get_workouts_by_muscle_group(request):
         return JsonResponse({'workouts': workout_list})
     return JsonResponse({'workouts': []})
 
-class CreateMeals(CreateView):
+class CreateMeals(LoginRequiredMixin, CreateView):
     model = Meal
     form_class = MealForm
     
@@ -78,7 +79,7 @@ class CreateMeals(CreateView):
 #         print(f"Error fetching foods: {food_search_response.status_code}")
 #         return JsonResponse([], safe=False)
 
-class WorkoutList(CreateView):
+class WorkoutList(LoginRequiredMixin, CreateView):
     model = Workout
     fields = ['name', 'calorie_lost']
     success_url = reverse_lazy('workout_list')  
@@ -102,26 +103,27 @@ class WorkoutList(CreateView):
         return super().form_valid(form)
     
     
-class WorkoutUpdate(UpdateView):
+class WorkoutUpdate(LoginRequiredMixin, UpdateView):
     model = Workout
     fields = '__all__'
     
-class WorkoutDelete(DeleteView):
+class WorkoutDelete(LoginRequiredMixin, DeleteView):
     model = Workout
     success_url = '/workoutlog/'
 
-class SetGoals(UpdateView):
+class SetGoals(LoginRequiredMixin, UpdateView):
     model = NewUser
     fields = ['workout_goal', 'calorie_goal', 'meal_goal']
 
-class MealUpdate(UpdateView):
+class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     fields = ['name', 'meal', 'day', 'calories', 'notes']
     
-class MealDelete(DeleteView):
+class MealDelete(LoginRequiredMixin, DeleteView):
     model = Meal
     success_url = '/meallog/'
 
+@login_required
 def user_dashboard(request):
   selected_date = request.GET.get('workout_date', None)
   user = request.user
@@ -161,20 +163,24 @@ def user_dashboard(request):
         'todays_workout_count': todays_workout_count,
         'selected_date': selected_date})
 
+@login_required
 def meal_log(request):
    user = request.user
    meals = Meal.objects.filter(day__user=user)
    return render(request, 'meal_log.html', { 'meals': meals })
 
+@login_required
 def meal_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
     return render(request, 'meal_detail.html', { 'meal': meal })
 
+@login_required
 def workout_log(request):
     user = request.user
     workouts = Workout.objects.filter(day__user=user)
     return render(request, 'workout_log.html', { 'workouts': workouts })
 
+@login_required
 def workout_detail(request, workout_id):
     workout = Workout.objects.get(id=workout_id)
     return render(request, 'workout_detail.html', { 'workout': workout })
