@@ -15,30 +15,37 @@
     <nav>
       <ul>
         {% if user.is_authenticated %}
-        <div>
-          <li>
-            <img src='https://imgur.com/2m8UXn7.png' />  
-          </li> 
-        </div>
-        <div>
-          <li class=" text-2xl text-red-500"><a href="{% url "set_goals" user.id %}">Add Goals</a></li>
-          <li><a href="{% url "create_workout" %}">Add Workout</a></li>
-          <li><a href="{% url "create_meals" %}">Add Meal</a></li>
-        </div>
-        <div>
-          <li><a href="{% url "user_dashboard" %}">Home</a></li>
-          <li>
-            <form id="logout-form" method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit">Sign out</button>
-            </form>
-          </li> 
+
+        <div class=" flex font-questrial font-bold">
+
+            <div>
+                <a href="{% url 'user_dashboard' %}">
+                  <img class=" w-40 mt-2 ml-2" src='https://imgur.com/2m8UXn7.png' />  
+                </a>
+            </div>
+    
+            <div >
+              <li><a href="{% url "set_goals" user.id %}">Add Goals</a></li>
+              <li><a href="{% url "create_workout" %}">Add Workout</a></li>
+              <li><a href="{% url "create_meals" %}">Add Meal</a></li>
+            </div>
+    
+            <div>
+              <li><a href="{% url "user_dashboard" %}">Home</a></li>
+              <li>
+                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit">Sign out</button>
+                </form>
+              </li> 
+            </div>
         </div>
 
         {% else %}
           <li><a href="{% url 'home' %}">Sign in</a></li>
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
         {% endif %}
+        
       </ul>
     </nav>
   </header>

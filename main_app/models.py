@@ -49,7 +49,7 @@ class Day(models.Model):
 class Meal(models.Model):
     name = models.CharField(max_length = 100)
     meal = models.CharField('Select Meal',
-        max_length=1,
+        max_length=10,
         choices=MEALS,
         default=MEALS[0][0])
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
