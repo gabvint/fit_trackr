@@ -10,7 +10,8 @@ from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
 from datetime import datetime
-from django.db.models import Sum 
+
+from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -18,8 +19,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Home(LoginView):
   template_name = 'home.html'
   
-  
-class CreateWorkout(LoginRequiredMixin, CreateView):
+class CreateWorkout(CreateView, LoginRequiredMixin):
+
   model = Workout
   form_class = WorkoutForm
   
@@ -47,7 +48,8 @@ def get_workouts_by_muscle_group(request):
         return JsonResponse({'workouts': workout_list})
     return JsonResponse({'workouts': []})
 
-class CreateMeals(LoginRequiredMixin, CreateView):
+
+class CreateMeals(CreateView, LoginRequiredMixin):
     model = Meal
     form_class = MealForm
     
@@ -79,7 +81,8 @@ class CreateMeals(LoginRequiredMixin, CreateView):
 #         print(f"Error fetching foods: {food_search_response.status_code}")
 #         return JsonResponse([], safe=False)
 
-class WorkoutList(LoginRequiredMixin, CreateView):
+
+class WorkoutList(CreateView, LoginRequiredMixin):
     model = Workout
     fields = ['name', 'calorie_lost']
     success_url = reverse_lazy('workout_list')  
@@ -101,25 +104,24 @@ class WorkoutList(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
-    
-    
-class WorkoutUpdate(LoginRequiredMixin, UpdateView):
+
+class WorkoutUpdate(UpdateView, LoginRequiredMixin):
     model = Workout
     fields = '__all__'
     
-class WorkoutDelete(LoginRequiredMixin, DeleteView):
+class WorkoutDelete(DeleteView, LoginRequiredMixin):
     model = Workout
     success_url = '/workoutlog/'
 
-class SetGoals(LoginRequiredMixin, UpdateView):
+class SetGoals(UpdateView, LoginRequiredMixin):
     model = NewUser
     fields = ['workout_goal', 'calorie_goal', 'meal_goal']
 
-class MealUpdate(LoginRequiredMixin, UpdateView):
+class MealUpdate(UpdateView, LoginRequiredMixin):
     model = Meal
     fields = ['name', 'meal', 'day', 'calories', 'notes']
     
-class MealDelete(LoginRequiredMixin, DeleteView):
+class MealDelete(DeleteView, LoginRequiredMixin):
     model = Meal
     success_url = '/meallog/'
 
