@@ -8,7 +8,7 @@ from .api import get_workouts
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
-from .forms import WorkoutForm, MealForm
+from .forms import WorkoutForm, MealForm, CustomAuthenticationForm
 from datetime import datetime
 
 from django.db.models import Sum
@@ -18,6 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Home(LoginView):
   template_name = 'home.html'
+  authentication_form = CustomAuthenticationForm
   
 class CreateWorkout(CreateView, LoginRequiredMixin):
 
