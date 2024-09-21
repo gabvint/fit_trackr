@@ -911,10 +911,6 @@ select{
   flex-direction: column;
 }
 
-.flex-col-reverse{
-  flex-direction: column-reverse;
-}
-
 .items-center{
   align-items: center;
 }
@@ -997,6 +993,11 @@ select{
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
+.bg-darkerSage{
+  --tw-bg-opacity: 1;
+  background-color: rgb(86 94 80 / var(--tw-bg-opacity));
+}
+
 .bg-gray-50{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1005,26 +1006,6 @@ select{
 .bg-offWhite{
   --tw-bg-opacity: 1;
   background-color: rgb(241 241 241 / var(--tw-bg-opacity));
-}
-
-.bg-sage{
-  --tw-bg-opacity: 1;
-  background-color: rgb(105 117 101 / var(--tw-bg-opacity));
-}
-
-.bg-darkerSage{
-  --tw-bg-opacity: 1;
-  background-color: rgb(86 94 80 / var(--tw-bg-opacity));
-}
-
-.bg-gray-100{
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-2{
@@ -1176,16 +1157,6 @@ select{
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:bg-blue-600:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-darkerSage:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(86 94 80 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-sage:hover{
