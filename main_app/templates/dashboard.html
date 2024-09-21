@@ -6,63 +6,66 @@
 {% endblock head %}
 
 {% block content %}
-
-    {% if user.is_authenticated %}
-        <h1>{{ user.username }}'s Fittrrackr</h1>
-    {% else %}
-        <h1>Welcome to Fittrrackr</h1>
-    {% endif %}    
-    <div>
-        <div>
-            <form method="GET" action="{% url 'user_dashboard' %}">
-                <label for="workout_date">Date:</label>
-                <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}">
-                <button type="submit">Submit</button>
-            </form>
+    <div class="container mx-auto p-6 " style="background-color: #3c3d37 ;">
+        <div class="mb-6">
+            {% if user.is_authenticated %}
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ user.username }}'s FitTrackr</h1>
+            {% else %}
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Welcome to Fittrrackr</h1>
+            {% endif %}    
+            <div>
+                <form method="GET" action="{% url 'user_dashboard' %}" class="flex items-center space-x-4">
+                    <label for="workout_date" class="text-lg text-gray-700">Date:</label>
+                    <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
+                </form>
+            </div>
         </div>
-        <div>
-            <h2>Calories Remaining{{ selected_date|date:'Y-m-d' }}</h2>
-            <p>
-                Goal: {{calorie_goal}}  - Meals: {{ total_meal_calories }} + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                <h2 class="text-2xl font-semibold mb-2">Calories Remaining</h2>
+                <p class="text-gray-700"> Goal: {{calorie_goal}}  - Meals: {{ total_meal_calories }} + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }} </p>
+            </div>
+            <div class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                    <h3 class="text-xl font-semibold mb-2"> Calorie Goal</h3>
+                    <p>{{total_meal_calories}}/{{calorie_goal}} Calories</p>
+                </div>   
+                <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                    <h3 class="text-xl font-semibold mb-2"> Workout Goal</h3>
+                    <p>{{todays_workout_count}}/{{workout_goal}} Workouts</p>
+                </div>   
+                <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                    <h3 class="text-xl font-semibold mb-2"> Meal Goal</h3>
+                    <p>{{todays_meal_count}}/{{meal_goal}} Meals</p>
+                </div>   
+            </div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                <h2 class="text-2xl font-semibold mb-4">Today's Meals</h2>
+                <ul class="list-disc pl-5 space-y-2">
+                    {% for meal in recent_meals %}
+                        <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
+                    {% empty %}
+                        <li>No recent meal entries available</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'meal_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
+            </div>
+            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
+                <h2 class="text-2xl font-semibold mb-4">Today's Workouts</h2>
+                <ul class="list-disc pl-5 space-y-2">
+                    {% for workout in recent_workouts %}
+                        <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
+                    {% empty %}
+                        <li>No recent workouts available</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'workout_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
+            </div>
         <div>
-            <h3> Calorie Goal</h3>
-            <p>{{total_meal_calories}}/{{calorie_goal}} Calories</p>
-        </div>   
-        <div>
-            <h3> Workout Goal</h3>
-            <p>{{todays_workout_count}}/{{workout_goal}} Workouts</p>
-        </div>   
-        <div>
-            <h3> Meal Goal</h3>
-            <p>{{todays_meal_count}}/{{meal_goal}} Meals</p>
-        </div>   
     </div>
-    <div>
-        <div>
-            <h2>Meals</h2>
-            <ul>
-                {% for meal in recent_meals %}
-                    <li>{{ meal.get_meal_display }} +{{ meal.calories }} calories</li>
-                {% empty %}
-                    <li>No recent meal entries available</li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'meal_log' %}">See All -> </a>
-        </div>
-        <div>
-            <h2>Workouts</h2>
-            <ul>
-                {% for workout in recent_workouts %}
-                    <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
-                {% empty %}
-                    <li>No recent workouts available</li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'workout_log' %}">See All -> </a>
-        </div>
-    <div>
 
 
 {% endblock content %}
