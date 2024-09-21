@@ -42,7 +42,18 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily:{
+                quattrocento: ["Quattrocento", 'system-ui'], 
+                questrial: ["Questrial", 'system-ui'],
+            },
+            colors: {
+                black: '#181C14', 
+                grey: '#3C3D37', 
+                sage: '#697565', 
+                cream: '#ECDFCC',
+            },
+        },
     },
     plugins: [
         /**
