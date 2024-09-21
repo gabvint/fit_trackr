@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from .models import Workout, NewUser, Day, Meal
 from .forms import WorkoutForm, MealForm
 from datetime import datetime
+
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -18,8 +19,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Home(LoginView):
   template_name = 'home.html'
   
-  
 class CreateWorkout(CreateView, LoginRequiredMixin):
+
   model = Workout
   form_class = WorkoutForm
   
@@ -46,6 +47,7 @@ def get_workouts_by_muscle_group(request):
         workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
         return JsonResponse({'workouts': workout_list})
     return JsonResponse({'workouts': []})
+
 
 class CreateMeals(CreateView, LoginRequiredMixin):
     model = Meal
@@ -79,6 +81,7 @@ class CreateMeals(CreateView, LoginRequiredMixin):
 #         print(f"Error fetching foods: {food_search_response.status_code}")
 #         return JsonResponse([], safe=False)
 
+
 class WorkoutList(CreateView, LoginRequiredMixin):
     model = Workout
     fields = ['name', 'calorie_lost']
@@ -101,8 +104,7 @@ class WorkoutList(CreateView, LoginRequiredMixin):
 
     def form_valid(self, form):
         return super().form_valid(form)
-    
-    
+
 class WorkoutUpdate(UpdateView, LoginRequiredMixin):
     model = Workout
     fields = '__all__'
