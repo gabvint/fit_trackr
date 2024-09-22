@@ -174,7 +174,7 @@ def user_dashboard(request):
 @login_required
 def meal_log(request):
    user = request.user
-   meals = Meal.objects.filter(day__user=user)
+   meals = Meal.objects.filter(day__user=user).order_by('-day')
    return render(request, 'meal_log.html', { 'meals': meals })
 
 @login_required
@@ -185,7 +185,7 @@ def meal_detail(request, meal_id):
 @login_required
 def workout_log(request):
     user = request.user
-    workouts = Workout.objects.filter(day__user=user)
+    workouts = Workout.objects.filter(day__user=user).order_by('-day')
     return render(request, 'workout_log.html', { 'workouts': workouts })
 
 @login_required

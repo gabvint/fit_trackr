@@ -9,6 +9,9 @@
 
 
 <section class='font-quattrocento'>
+    <div class='ml-2 mt-3'>
+        <button><a href="{% url 'user_dashboard' %}" class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage">Back to Home</a></button>
+    </div>
     <div class='flex justify-center'>
         <h1 class=" m-5 text-4xl">Workout Log</h1>
     </div>
@@ -33,9 +36,6 @@
             </table>
         </div>
     </section>
-    <div class='flex justify-center mt-5'>
-        <button><a href="{% url 'user_dashboard' %}" class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage">Back to Home</a></button>
-    </div>
 
 {% endblock content %}
 

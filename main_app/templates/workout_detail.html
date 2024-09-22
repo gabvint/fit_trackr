@@ -8,59 +8,59 @@
 
 {% block content %}
 <secton class='font-quattrocento'>
-<div class='flex justify-center m-5 text-4xl'>
-    <h1>Workout Details</h1>
-</div>
-<div class='flex justify-center mt-5'>
-    <table>
-        <tbody>
-            <tr>
-                <th class="text-right pr-5">Date:</th>
-                <td>{{ workout.day }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5">Workout:</th>
-                <td>{{ workout.name }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5">Targets:</th>
-                <td>{{ workout.get_muscle_group_display }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5"># of Sets:</th>
-                <td>{{ workout.sets }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5"># of Reps:</th>
-                <td>{{ workout.reps }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5">Calories Lost:</th>
-                <td>{{ workout.calorie_lost }}</td>
-            </tr>
-            <tr>
-                <th class="text-right pr-5">Notes:</th>
-                <td>{{ workout.notes }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div id='workout-info'>
-{% comment %} {% detail in workout_details %}
-    {{detail.Muscles}}
-    {{detail.Workout}}
-    {{detail.Intensity_Level}}
-    {{}} {% endcomment %}
-</div>
+    <div class=' ml-2 mt-2'>
+        <button ><a href="{% url 'workout_log' %}" class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage">Back</a></button>
+    </div>
+    <div class='flex justify-center m-5 text-4xl'>
+        <h1>Workout Details</h1>
+    </div>
+    <div class='flex justify-center mt-5'>
+        <table class='table-auto rounded-xl bg-offWhite text-warmCoffee'>
+            <tbody>
+                <tr>
+                    <th class="text-right pl-5 pr-5">Date:</th>
+                    <td class='pl-5 pr-5'>{{ workout.day }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5">Workout:</th>
+                    <td class='pl-5 pr-5 text-wrap'>{{ workout.name }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5">Targets:</th>
+                    <td class='pl-5 pr-5'>{{ workout.get_muscle_group_display }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5"># of Sets:</th>
+                    <td class='pl-5 pr-5'>{{ workout.sets }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5"># of Reps:</th>
+                    <td class='pl-5 pr-5'>{{ workout.reps }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5">Calories Lost:</th>
+                    <td class='pl-5 pr-5'>{{ workout.calorie_lost }}</td>
+                </tr>
+                <tr>
+                    <th class="text-right pl-5 pr-5">Notes:</th>
+                    <td class='pl-5 pr-5'>{{ workout.notes }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id='workout-info'>
+    {% comment %} {% detail in workout_details %}
+        {{detail.Muscles}}
+        {{detail.Workout}}
+        {{detail.Intensity_Level}}
+        {{}} {% endcomment %}
+    </div>
 
 
-<div class='flex justify-center mt-5 gap-5'>
-    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_update' workout.id %}" >Edit</a></button>
-    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_delete' workout.id %}" >Delete</a></button>
-</div>
-<div class='flex justify-center mt-5'>
-    <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_log' %}">Back</a></button>
-</div>
+    <div class='flex justify-center mt-10 gap-2'>
+        <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_update' workout.id %}" >Edit</a></button>
+        <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'workout_delete' workout.id %}" >Delete</a></button>
+    </div>
 </secton>
 {% endblock content %}
 
