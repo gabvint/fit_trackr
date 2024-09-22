@@ -934,6 +934,10 @@ select{
   margin-left: 5rem;
 }
 
+.mr-24{
+  margin-right: 6rem;
+}
+
 .block{
   display: block;
 }
