@@ -16,8 +16,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class Home(LoginView):
-  template_name = 'home.html'
+def home(request):
+  return render(request, 'home.html')
+
+class SignIn(LoginView):
+  template_name = 'signin.html'
   authentication_form = CustomAuthenticationForm
   
 class CreateWorkout(CreateView, LoginRequiredMixin):

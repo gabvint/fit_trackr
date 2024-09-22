@@ -92,7 +92,7 @@
             </div>
             {% else %}
                 <div class=" ml-auto flex gap-10">
-                  <a class="hover:text-sage" href="{% url 'home' %}">Sign In</a>
+                  <a class="hover:text-sage" href="{% url 'signin' %}">Sign In</a>
                   <a class="hover:text-sage" href="{% url 'signup' %}">Sign Up</a>
                 </div>
             {% endif %}
@@ -116,7 +116,7 @@
               </form>
             </li>
           {% else %}
-            <li class=" hover:text-sage"><a href="{% url 'home' %}">Sign In</a></li>
+            <li class=" hover:text-sage"><a href="{% url 'signin' %}">Sign In</a></li>
             <li class=" hover:text-sage"><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
