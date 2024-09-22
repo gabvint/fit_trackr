@@ -105,7 +105,7 @@ class CustomUserChangeForm(UserChangeForm):
   workout_goal=forms.IntegerField()
   class Meta:
     model = NewUser
-    fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal', 'meal_goal')
+    fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal')
     
     
     
