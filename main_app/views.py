@@ -133,19 +133,21 @@ def user_dashboard(request):
   calorie_goal = user.calorie_goal or 0
   workout_goal = user.workout_goal  or 0
   meal_goal = user.meal_goal or 0
+  
 
   if selected_date:
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
-        recent_workouts = Workout.objects.filter(day__date=selected_date).order_by('-day')[:2]
-        recent_meals = Meal.objects.filter(day__date=selected_date).order_by('-id')[:2]
-        todays_meals = Meal.objects.filter(day__date=selected_date)
-        todays_workouts = Workout.objects.filter(day__date=selected_date)
-  else:
-        recent_workouts = Workout.objects.order_by('-day')[:2] 
-        recent_meals = Meal.objects.order_by('-id')[:2]
-        today = datetime.today().date()
-        todays_meals = Meal.objects.filter(day__date=today)
-        todays_workouts = Workout.objects.filter(day__date=today) 
+        recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
+        recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
+        todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
+        todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
+  else: 
+        selected_date = datetime.today().date()
+        recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
+        recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
+        todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
+        todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
+        
 
   total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories') or 0
   total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calorie_lost') or 0
