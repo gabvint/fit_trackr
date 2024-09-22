@@ -52,27 +52,27 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': 'Email'
         })
     )
-    calorie_goal = forms.IntegerField(
-        label='',
-        widget=forms.NumberInput(attrs={
-            'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-            'placeholder': 'Calorie Goal'
-        })
-    )
-    workout_goal = forms.IntegerField(
-        label='',
-        widget=forms.NumberInput(attrs={
-            'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-            'placeholder': 'Workout Goal'
-        })
-    )
-    meal_goal = forms.IntegerField(
-        label='',
-        widget=forms.NumberInput(attrs={
-            'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-            'placeholder': 'Meal Goal'
-        })
-    )
+    # calorie_goal = forms.IntegerField(
+    #     label='',
+    #     widget=forms.NumberInput(attrs={
+    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
+    #         'placeholder': 'Calorie Goal'
+    #     })
+    # )
+    # workout_goal = forms.IntegerField(
+    #     label='',
+    #     widget=forms.NumberInput(attrs={
+    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
+    #         'placeholder': 'Workout Goal'
+    #     })
+    # )
+    # meal_goal = forms.IntegerField(
+    #     label='',
+    #     widget=forms.NumberInput(attrs={
+    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
+    #         'placeholder': 'Meal Goal'
+    #     })
+    # )
     password1 = forms.CharField(
         label='',
         widget=forms.PasswordInput(attrs={
@@ -89,7 +89,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
     class Meta:
         model = NewUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'meal_goal', 'calorie_goal', 'workout_goal', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
 
     
     

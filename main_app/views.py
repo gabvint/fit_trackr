@@ -130,9 +130,9 @@ class MealDelete(DeleteView, LoginRequiredMixin):
 def user_dashboard(request):
   selected_date = request.GET.get('workout_date', None)
   user = request.user
-  calorie_goal = user.calorie_goal
-  workout_goal = user.workout_goal 
-  meal_goal = user.meal_goal 
+  calorie_goal = user.calorie_goal or 0
+  workout_goal = user.workout_goal  or 0
+  meal_goal = user.meal_goal or 0
 
   if selected_date:
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
