@@ -16,10 +16,14 @@
                 {{ form.as_p }}
 
                 <input type="hidden" name="next" value="{{ next }}">
-
-                <button type="submit" class="w-full bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage">
-                    Login
+                <div class='flex justify-center'>
+                <button type="submit" class="relative mt-4 rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+                        <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                        opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                        <span class='relative'>Login</span>
                 </button>
+                </div>
             </div>
         </form>
     </section>
