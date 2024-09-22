@@ -6,7 +6,7 @@
 {% endblock head %}
 
 {% block content %}
-    <div class="container mx-auto p-6 " style="background-color: #3c3d37 ;">
+     <div class="container mx-auto p-6 " style="background-color: #3c3d37 ;">
         <div class="mb-6">
             {% if user.is_authenticated %}
                 <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ user.username }}'s FitTrackr</h1>
@@ -65,9 +65,34 @@
                 <a href="{% url 'workout_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
             </div>
         <div>
+    </div> 
+
+
+    <div class=" text-4xl font-quattrocento mt-8 ml-8 italic">
+        <p>{{ user.first_name }} {{ user.last_name }}'s FitTrackr</p>
     </div>
 
-
+    <div class="grid md:grid-cols-2 mt-8 gap-32 justify-center">
+        <div class="bg-blue-50 w-full max-w-[1000px] ml-20">
+            The goals go here and calculation
+        </div>
+    
+        <div class="bg-white w-full md:w-[525px] h-full ml-7 mr-5 p-9 rounded-lg">
+            <div>
+                <form method="GET" action="{% url 'user_dashboard' %}" class="flex items-center space-x-4">
+                    <label for="workout_date" class="text-lg text-gray-700">Select Date:</label>
+                    <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
+                    
+                    <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+                        <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                        opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                        <span class='relative'>Submit</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 
