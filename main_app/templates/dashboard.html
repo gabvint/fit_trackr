@@ -3,6 +3,7 @@
 
 {% block head %}
 {% tailwind_css %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock head %}
 
 {% block content %}
@@ -47,6 +48,9 @@
                         <li>No recent meal entries available</li>
                     {% endfor %}
                 </ul>
+                <div class='flex justify-center'>
+                    <div id="meal-chart" style="width: 600px; height: 400px;"></div>
+                </div>
                 <a href="{% url 'meal_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
             </div>
             <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
@@ -89,6 +93,40 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const data = [{
+            values: {{ values|safe }},
+            labels: {{ labels|safe }},
+            type: 'pie',
+            marker: {
+                colors: [
+                '#565E50',
+                '#ECDFCC',
+                '#B44C43',
+                '#FFAB76',
+                '#F5B7B1',
+                '#FFD700',
+                '#A2D2FF',
+                '#6AB7D8',
+                '#B5B5B5',
+                '#D1CFC7',
+                '#F1F1F1',
+                '#4B3F3B']
+            }
+        }];
+
+        const layout = {
+            title: 'Meal Breakdown',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: {
+            color: '#fff'
+            }
+        };
+
+        Plotly.newPlot('meal-chart', data, layout);
+    </script>
 {% endblock content %}
 
 
