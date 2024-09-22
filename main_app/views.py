@@ -119,7 +119,7 @@ class WorkoutDelete(DeleteView, LoginRequiredMixin):
 
 class SetGoals(UpdateView, LoginRequiredMixin):
     model = NewUser
-    fields = ['workout_goal', 'calorie_goal', 'meal_goal']
+    fields = ['workout_goal', 'calorie_goal']
 
 class MealUpdate(UpdateView, LoginRequiredMixin):
     model = Meal
@@ -135,7 +135,6 @@ def user_dashboard(request):
   user = request.user
   calorie_goal = user.calorie_goal or 0
   workout_goal = user.workout_goal  or 0
-  meal_goal = user.meal_goal or 0
   
 
   if selected_date:
@@ -165,7 +164,6 @@ def user_dashboard(request):
         'total_workout_calories': total_workout_calories,
         'net_calories': net_calories,
         'calorie_goal': calorie_goal,
-        'meal_goal': meal_goal,
         'workout_goal': workout_goal,
         'todays_meal_count': todays_meal_count ,
         'todays_workout_count': todays_workout_count,
