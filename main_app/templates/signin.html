@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock head %}
+
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+    <section>
+        <form action="{% url 'signin' %}" method="post" class="flex flex-col items-center justify-center h-screen">
+            {% csrf_token %}
+            <div class="p-8 rounded-lg shadow-md w-full max-w-sm space-y-4 bg-offWhite">
+                <h1 class="flex justify-center text-xl font-bold">Member Login</h1>
+
+                {{ form.as_p }}
+
+                <input type="hidden" name="next" value="{{ next }}">
+                <div class='flex justify-center'>
+                <button type="submit" class="relative mt-4 rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+                        <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                        opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                        <span class='relative'>Login</span>
+                </button>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endif %}
+
+{% endblock  %}
