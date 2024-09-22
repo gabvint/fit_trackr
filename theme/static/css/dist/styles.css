@@ -1008,6 +1008,10 @@ select{
   max-width: 1000px;
 }
 
+.max-w-xl{
+  max-width: 36rem;
+}
+
 .table-auto{
   table-layout: auto;
 }

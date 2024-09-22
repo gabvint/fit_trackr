@@ -7,9 +7,11 @@ from django.contrib.auth import login
 from .api import get_workouts
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from .models import Workout, NewUser, Day, Meal
+from .models import Workout, NewUser, Day, Meal, MEALS
 from .forms import WorkoutForm, MealForm, CustomAuthenticationForm
 from datetime import datetime
+from django.db.models import Count
+
 
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
@@ -156,6 +158,13 @@ def user_dashboard(request):
   net_calories = calorie_goal - total_meal_calories + total_workout_calories
   todays_meal_count = todays_meals.count()
   todays_workout_count = todays_workouts.count()
+  meal_counts = Meal.objects.filter(day__user=user, day__date=selected_date) \
+    .values('meal') \
+    .annotate(count=Count('id'))
+  meal_labels = {key: value for key, value in MEALS}
+  labels = [meal_labels[meal['meal']] for meal in meal_counts]
+  values = [meal['count'] for meal in meal_counts]
+
 
   return render(request, 'dashboard.html', {
         'recent_meals': recent_meals, 
@@ -167,7 +176,10 @@ def user_dashboard(request):
         'workout_goal': workout_goal,
         'todays_meal_count': todays_meal_count ,
         'todays_workout_count': todays_workout_count,
-        'selected_date': selected_date})
+        'selected_date': selected_date,
+        'labels': labels,
+        'values': values,
+        })
 
 @login_required
 def meal_log(request):
@@ -207,4 +219,3 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-  
