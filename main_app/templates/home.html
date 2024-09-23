@@ -62,13 +62,52 @@
         opacity: 1;
         z-index: 1;
     }
+
+
+    #sticky-nav {
+        position: sticky; /* Make it sticky */
+        top: 0; /* Stick to the top */
+        z-index: 1000; /* Ensure it stays on top */
+        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        background-color: rgba(255, 255, 255, 0); /* Initially transparent */
+    }
+    
+    #sticky-nav.scrolled {
+        background-color: rgba(255, 255, 255, 0.8); /* Background when scrolled */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow when scrolled */
+    }
+    #sticky-nav a {
+        display: inline-block; /* Make them behave like buttons */
+        padding: 10px 20px; /* Add padding */
+        margin: 0 10px; /* Space between buttons */
+        background-color: #697565; /* Button background color */
+        color: #ECDFCC; /* Text color */
+        border-radius: 5px; /* Rounded corners */
+        text-decoration: none; /* Remove underline */
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    }
+    
+    #sticky-nav a:hover {
+        background-color: #697565; /* Darker green on hover */
+    }
+    
+    #sticky-nav a.active {
+        background-color: #697565; /* Active button color */
+        transform: scale(1.05); /* Slight scale effect on active */
+    }
 </style>
 {% endblock head %}
 
 {% block content %}
 
 {% if not user.is_authenticated %}
-
+<div id="sticky-nav" class="bg-sage p-4 fixed top-0 left-0 right-0 opacity-0 transition-opacity duration-300 z-50 shadow-md">
+    <div class="flex justify-center space-x-4">
+        <a href="#reviews" class="text-offWhite hover:text-yellow-500">User Reviews</a>
+        <a href="#features" class="text-offWhite hover:text-yellow-500">Features</a>
+        <a href="#about" class="text-offWhite hover:text-yellow-500">About Us</a>
+    </div>
+</div>
 
 <section class=" font-questrial">
     <div class="flex justify-between items-center bg-cover pb-5" style="background: url('{% static 'images/food.jpg' %}') no-repeat center center/cover">
@@ -82,42 +121,62 @@
             <div class="flex gap-3 mt-4">
                 <button>
                     <a href="{% url 'signup' %}">
-                        <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                        <div class="relative rounded-md mt-2 py-1 w-auto text-center px-4 inline-block overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
                             <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative">Sign Up</span>
+                            <span class="relative">Get Started Now</span>
                         </div>
                     </a>
                 </button>
-                <button>
-                    <a href="{% url 'signin' %}">
-                        <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative">Sign In</span>
-                        </div>
-                    </a>
-                </button>
+                
             </div>
         </div>
     </div>
 </section>
-  {% comment %} <div class='mt-5'>
-        <div id="photos-container">
-            <div class="photo hidden">
-                <img src="{% static 'images/eating.jpg' %}" alt="eating" class="mx-auto">
-            </div>
-            <div class="photo hidden">
-                <img src="{% static 'images/food.jpg' %}" alt="healthy" class="mx-auto">
-            </div>
-            <div class="photo hidden">
-                <img src="{% static 'images/hiking.jpg' %}" alt="hiking" class="mx-auto">
-            </div>
-            <div class="photo hidden">
-                <img src="{% static 'images/running.jpg' %}" alt="running" class="mx-auto">
-            </div>
+ 
+<section id="features" class="bg-sage p-5">
+    <h1 class="text-3xl font-bold text-offWhite text-center mb-5">Features</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Meal Tracking</h2>
+            <p class="text-sm">
+                Log your meals effortlessly and keep track of your caloric intake. Our app helps you make informed choices about your nutrition.
+            </p>
         </div>
-    </div> {% endcomment %}
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Workout Logging</h2>
+            <p class="text-sm">
+                Track your workouts and monitor your progress. Set goals and push yourself to achieve more with every session.
+            </p>
+        </div>
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Progress Insights</h2>
+            <p class="text-sm">
+                Get personalized insights based on your data to help you stay on track. Celebrate your milestones and achievements along the way.
+            </p>
+        </div>
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Custom Goals</h2>
+            <p class="text-sm">
+                Set your own calorie and workout goals tailored to your lifestyle and preferences. Our app adapts to your needs.
+            </p>
+        </div>
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Community Support</h2>
+            <p class="text-sm">
+                Join our community of fitness enthusiasts for support, tips, and motivation. Share your journey and learn from others.
+            </p>
+        </div>
+        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">User-Friendly Interface</h2>
+            <p class="text-sm">
+                Enjoy an intuitive and easy-to-use interface designed to enhance your experience and keep you focused on your goals.
+            </p>
+        </div>
+    </div>
+</section>
 
-    <div class="bg-sage p-10 bg-opacity-80">
+<section>
+    <div class="bg-sage p-10 bg-opacity-80" id="reviews" >
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
         <div id="reviews-container" class="text-center">
             <div class="review hidden">
@@ -149,6 +208,23 @@
     </div>
     
 </section>
+<section id="about" class="bg-offWhite p-5">
+    <h1 class="text-3xl font-bold text-center mb-5">Meet Our Devs!</h1>
+    <div class="flex flex-wrap justify-center mt-4 space-x-4">
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Anaiah</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Brian</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Gabby</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
+    </div>
+</section>
 {% endif %}
 
 <script>
@@ -178,33 +254,57 @@
     showReview(currentIndex)
 
     setInterval(rotateReviews, 3000)
+    const stickyNav = document.getElementById('sticky-nav');
+    const navLinks = stickyNav.querySelectorAll('a');
+    const sections = document.querySelectorAll('section'); // Assuming each section has a tag <section>
 
+    window.addEventListener('scroll', () => {
+        // Handle sticky nav appearance
+        if (window.scrollY > 50) {
+            stickyNav.classList.add('scrolled');
+            stickyNav.style.opacity = '1'; // Set opacity to 1 for visibility
+            stickyNav.style.pointerEvents = 'auto'; // Allow interaction
+        } else {
+            stickyNav.classList.remove('scrolled');
+            stickyNav.style.opacity = '0'; // Hide when at the top
+            stickyNav.style.pointerEvents = 'none'; // Prevent interaction
+        }
 
-    {% comment %} const photos = document.querySelectorAll('.photo')
-    let currentPhotoIndex = 0
+        // Highlight active section in nav
+        let current = '';
 
-    function showPhoto(index) {
-        photos.forEach((photo, i) => {
-            if (i === index) {
-                photo.classList.remove('hidden')
-                photo.classList.add('slide-in')
-            } else {
-                photo.classList.add('slide-out')
-                setTimeout(() => {
-                    photo.classList.add('hidden')
-                    photo.classList.remove('slide-out')
-                }, 300)
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
             }
         });
-    }
 
-    function rotatePhotos() {
-        currentPhotoIndex = (currentPhotoIndex + 1) % photos.length
-        showPhoto(currentPhotoIndex)
-    }
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
 
-    showPhoto(currentPhotoIndex)
-    setInterval(rotatePhotos, 4000) {% endcomment %}
+    navLinks.forEach(link => {
+        let section = document.querySelector(link.getAttribute('href'));
+        
+        if (
+            section.offsetTop <= fromTop &&
+            section.offsetTop + section.offsetHeight > fromTop
+        ) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+
+   
 </script>
 
 {% endblock  %}
