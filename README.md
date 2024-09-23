@@ -29,6 +29,8 @@
   ## 🖥️ Technologies Used
   ![Python](https://img.shields.io/badge/-Python-05122A?style=flat&logo=python)
   ![Django](https://img.shields.io/badge/-Django-05122A?style=flat&logo=django)
+  ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
+  ![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
   ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
   ![CSS3](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3) 
   ![Trello](https://img.shields.io/badge/-Trello-05122A?style=flat&logo=trello)
@@ -40,13 +42,13 @@
   ## 🔮 Future Plans
 
 - **Incorporate Meals API**
-  - **Feature**: 
-  - **Benefit**: 
+  - **Feature**: Ability to auto-fill calorie intake based on food.
+  - **Benefit**: Get a closer, accurate measurement of caloric intake for users.
 
 - **Incorporate Workouts API**
-  - **Feature**:
-  - **Benefit**: 
+  - **Feature**: Ability to auto-fill workouts to get additional information on workout and video guides.
+  - **Benefit**: Provides additional resources to the user who may want to learn more about a workout.
 
 - **Share**
   - **Feature**: Ability to share goals with friends, and comment on each others’ goals.
-  - **Benefit**: 
+  - **Benefit**: Creates community and adds social aspect to the app.
