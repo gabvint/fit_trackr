@@ -48,34 +48,40 @@
 {% if not user.is_authenticated %}
 
 
-<section class='mt-10 font-questrial'>
-    <div class='flex justify-between'>
-        <div class='ml-10 mt-10'>
-            <p class='mb-2'>The best app to reach your nutrition and health goals</p>
-            <h1 class='text-4xl font-bold'>Reach your full potential</h1>
-            <h1 class='text-4xl'>with FitTrackr</h1>
-            <p class='mt-2'>Take charge of your health with the exercise and calorie tracker</p>
-            <div class=" ml-auto flex gap-3 mt-4">
+<section class="mt-10 font-questrial">
+    <div class="flex justify-between items-center">
+        <div class="ml-10 mt-10 content max-w-md">
+            <p class="mb-2">The best app to reach your nutrition and health goals</p>
+            <h1 class="text-4xl font-bold">Reach your full potential</h1>
+            <h1 class="text-4xl">with FitTrackr</h1>
+            <p class="mt-2">
+                FitTrackr is a fitness tracking app that monitors your meals and workouts by calculating both caloric intake and loss. It helps users stay on top of their health goals by providing real-time calorie counts and allowing them to set personalized calorie and workout goals.
+            </p>
+            <div class="flex gap-3 mt-4">
                 <button>
-                    <a href="{% url 'signup' %}"><div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
-                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                    <span class="relative">Sign Up</span>
-                </div></a></button>
-                <button class=""><a href="{% url 'signin' %}"><div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
-                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                    <span class="relative">Sign In</span>
-                </div></a></button>
+                    <a href="{% url 'signup' %}">
+                        <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span class="relative">Sign Up</span>
+                        </div>
+                    </a>
+                </button>
+                <button>
+                    <a href="{% url 'signin' %}">
+                        <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span class="relative">Sign In</span>
+                        </div>
+                    </a>
+                </button>
             </div>
         </div>
-        <div class='mr-60 mt-10'>
-            {% comment %} this is a placeholder for now if we want to use other visuals {% endcomment %}
-            <img class="w-28 md:w-32" src='https://imgur.com/2m8UXn7.png' alt="FitTrackr Logo" />
+        <div class="mr-10 mt-10">
+            <img class="w-64" src="https://imgur.com/6MLBOkn.png" alt="Example Dashboard" />
         </div>
     </div>
+</section>
+
 
     <div class="mt-4 bg-sage p-5">
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
@@ -98,7 +104,7 @@
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>
                 <p class="text-xl text-offWhite font-bold">Anaiah Maddox</p>
-                <p class="text-sm text-offWhite italic">"The functionalities of this app is flawless!"</p>
+                <p class="text-sm text-offWhite italic">"The functionalities of this app are flawless!"</p>
             </div>
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>

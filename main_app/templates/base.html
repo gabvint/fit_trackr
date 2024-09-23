@@ -115,7 +115,13 @@
           
         
             {% else %}
-                <div class="flex gap-10 relative ml-[1000px]">
+                <div class="flex-shrink-0">
+                  <a href="{% url 'home' %}">
+                    <img class="w-28 md:w-32" src='https://imgur.com/2m8UXn7.png' alt="FitTrackr Logo" />
+                  </a>
+                </div>
+
+                <div class="flex gap-10 absolute right-8">
                   <a class="hover:text-sage" href="{% url 'signin' %}">Sign In</a>
                   <a class="hover:text-sage" href="{% url 'signup' %}">Sign Up</a>
                 </div>
