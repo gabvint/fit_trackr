@@ -133,40 +133,40 @@ class MealDelete(DeleteView, LoginRequiredMixin):
 
 @login_required
 def user_dashboard(request):
-  selected_date = request.GET.get('workout_date', None)
-  user = request.user
-  calorie_goal = user.calorie_goal or 0
-  workout_goal = user.workout_goal  or 0
-  
+    selected_date = request.GET.get('workout_date', None)
+    user = request.user
+    calorie_goal = user.calorie_goal or 0
+    workout_goal = user.workout_goal or 0
 
-  if selected_date:
+    # Handle the selected date
+    if selected_date:
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
-        recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
-        recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
-        todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
-        todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
-  else: 
+    else:
         selected_date = datetime.today().date()
-        recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
-        recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
-        todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
-        todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
-        
 
-  total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories') or 0
-  total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calorie_lost') or 0
-  net_calories = calorie_goal - total_meal_calories + total_workout_calories
-  todays_meal_count = todays_meals.count()
-  todays_workout_count = todays_workouts.count()
-  meal_counts = Meal.objects.filter(day__user=user, day__date=selected_date) \
-    .values('meal') \
-    .annotate(count=Count('id'))
-  meal_labels = {key: value for key, value in MEALS}
-  labels = [meal_labels[meal['meal']] for meal in meal_counts]
-  values = [meal['count'] for meal in meal_counts]
+    # Query recent workouts and meals
+    recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
+    recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
+    todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
+    todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
 
+    # Calculate total meal and workout calories
+    total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories') or 0
+    total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calorie_lost') or 0
 
-  return render(request, 'dashboard.html', {
+    # Calculate net calories
+    net_calories = calorie_goal - total_meal_calories + total_workout_calories
+
+    # Prepare labels and values for the pie chart
+    labels = ['Calories Consumed', 'Remaining Calories']
+    remaining_calories = calorie_goal - total_meal_calories
+    values = [total_meal_calories, remaining_calories]
+
+    # Calculate today's meal and workout counts
+    todays_meal_count = todays_meals.count()
+    todays_workout_count = todays_workouts.count()
+
+    return render(request, 'dashboard.html', {
         'recent_meals': recent_meals, 
         'recent_workouts': recent_workouts, 
         'total_meal_calories': total_meal_calories,     
@@ -174,12 +174,13 @@ def user_dashboard(request):
         'net_calories': net_calories,
         'calorie_goal': calorie_goal,
         'workout_goal': workout_goal,
-        'todays_meal_count': todays_meal_count ,
+        'todays_meal_count': todays_meal_count,
         'todays_workout_count': todays_workout_count,
         'selected_date': selected_date,
         'labels': labels,
         'values': values,
-        })
+    })
+
 
 @login_required
 def meal_log(request):

@@ -914,10 +914,6 @@ select{
   margin-bottom: 2rem;
 }
 
-.mt-7{
-  margin-top: 1.75rem;
-}
-
 .mt-32{
   margin-top: 8rem;
 }
@@ -972,14 +968,6 @@ select{
   height: 100vh;
 }
 
-.h-auto{
-  height: auto;
-}
-
-.h-96{
-  height: 24rem;
-}
-
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1010,14 +998,6 @@ select{
 
 .w-full{
   width: 100%;
-}
-
-.w-auto{
-  width: auto;
-}
-
-.w-48{
-  width: 12rem;
 }
 
 .max-w-full{
@@ -1102,10 +1082,6 @@ select{
   gap: 2rem;
 }
 
-.gap-16{
-  gap: 4rem;
-}
-
 .space-y-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1161,11 +1137,6 @@ select{
 .border-cream{
   --tw-border-opacity: 1;
   border-color: rgb(236 223 204 / var(--tw-border-opacity));
-}
-
-.border-warmCoffee{
-  --tw-border-opacity: 1;
-  border-color: rgb(75 63 59 / var(--tw-border-opacity));
 }
 
 .bg-black{
@@ -1226,10 +1197,6 @@ select{
   padding: 1rem;
 }
 
-.p-10{
-  padding: 2.5rem;
-}
-
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1258,11 +1225,6 @@ select{
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-9{
-  padding-top: 2.25rem;
-  padding-bottom: 2.25rem;
 }
 
 .pb-2{
@@ -1560,10 +1522,6 @@ select{
 
   .md\:mr-5{
     margin-right: 1.25rem;
-  }
-
-  .md\:ml-\[400px\]{
-    margin-left: 400px;
   }
 
   .md\:flex{
