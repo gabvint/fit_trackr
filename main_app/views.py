@@ -113,7 +113,7 @@ class WorkoutList(CreateView, LoginRequiredMixin):
 
 class WorkoutUpdate(UpdateView, LoginRequiredMixin):
     model = Workout
-    fields = '__all__'
+    form_class = WorkoutForm
     
 class WorkoutDelete(DeleteView, LoginRequiredMixin):
     model = Workout
@@ -125,7 +125,7 @@ class SetGoals(UpdateView, LoginRequiredMixin):
 
 class MealUpdate(UpdateView, LoginRequiredMixin):
     model = Meal
-    fields = ['name', 'meal', 'day', 'calories', 'notes']
+    form_class = MealForm
     
 class MealDelete(DeleteView, LoginRequiredMixin):
     model = Meal
