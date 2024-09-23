@@ -64,7 +64,6 @@ module.exports = {
                 offWhite: '#F1F1F1',
                 warmCoffee: '#4B3F3B',
                 slateBlueGreen: '#2A3D45',
-
             },
         },
     },

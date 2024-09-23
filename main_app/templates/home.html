@@ -1,8 +1,47 @@
 {% extends 'base.html' %}
 {% block head %}
+<style>
+    @keyframes slide-in {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
 
+    @keyframes slide-out {
+        0% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
+
+    .slide-in {
+        animation: slide-in 0.3s forwards;
+        will-change: transform, opacity;
+    }
+    
+    .slide-out {
+        animation: slide-out 0.3s forwards;
+        will-change: transform, opacity;
+    }
+
+    #reviews-container {
+        max-height: 120px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    }
+</style>
 {% endblock head %}
-
 
 {% block content %}
 
@@ -38,8 +77,67 @@
         </div>
     </div>
 
-    {% comment %} thinking we can include other comments left by users just to make it look cool {% endcomment %}
+    <div class="mt-4 bg-sage p-5">
+        <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
+        <div id="reviews-container" class="text-center">
+            <div class="review hidden">
+                <p class="text-yellow-500">Rating: 5 / 5</p>
+                <p class="text-xl text-offWhite font-bold">John Doe</p>
+                <p class="text-sm text-offWhite italic">"This app completely changed how I manage my fitness. Highly recommend!"</p>
+            </div>
+            <div class="review hidden">
+                <p class="text-yellow-500">Rating: 4.5 / 5</p>
+                <p class="text-xl text-offWhite font-bold">Jane Smith</p>
+                <p class="text-sm text-offWhite italic">"A must-have for anyone serious about their health. It's amazing!"</p>
+            </div>
+            <div class="review hidden">
+                <p class="text-yellow-500">Rating: 5 / 5</p>
+                <p class="text-xl text-offWhite font-bold">Brian Na</p>
+                <p class="text-sm text-offWhite italic">"This app is amazing! Helps me stay on track with my goals."</p>
+            </div>
+            <div class="review hidden">
+                <p class="text-yellow-500">Rating: 5 / 5</p>
+                <p class="text-xl text-offWhite font-bold">Anaiah Maddox</p>
+                <p class="text-sm text-offWhite italic">"The functionalities of this app is flawless!"</p>
+            </div>
+            <div class="review hidden">
+                <p class="text-yellow-500">Rating: 5 / 5</p>
+                <p class="text-xl text-offWhite font-bold">Gabby Tongol</p>
+                <p class="text-sm text-offWhite italic">"I can't use any other app after I started using FitTrackr!"</p>
+            </div>
+        </div>
+    </div>
+
 </section>
 {% endif %}
+
+<script>
+    const reviews = document.querySelectorAll('.review')
+    let currentIndex = 0
+
+    function showReview(index) {
+        reviews.forEach((review, i) => {
+            if (i === index) {
+                review.classList.remove('hidden')
+                review.classList.add('slide-in')
+            } else {
+                review.classList.add('slide-out')
+                setTimeout(() => {
+                    review.classList.add('hidden')
+                    review.classList.remove('slide-out')
+                }, 150)
+            }
+        });
+    }
+
+    function rotateReviews() {
+        currentIndex = (currentIndex + 1) % reviews.length;
+        showReview(currentIndex)
+    }
+
+    showReview(currentIndex)
+
+    setInterval(rotateReviews, 3000)
+</script>
 
 {% endblock  %}
