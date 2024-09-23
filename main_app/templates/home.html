@@ -80,19 +80,19 @@
         display: inline-block; /* Make them behave like buttons */
         padding: 10px 20px; /* Add padding */
         margin: 0 10px; /* Space between buttons */
-        background-color: #4CAF50; /* Button background color */
-        color: white; /* Text color */
+        background-color: #697565; /* Button background color */
+        color: #ECDFCC; /* Text color */
         border-radius: 5px; /* Rounded corners */
         text-decoration: none; /* Remove underline */
         transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
     }
     
     #sticky-nav a:hover {
-        background-color: #45a049; /* Darker green on hover */
+        background-color: #697565; /* Darker green on hover */
     }
     
     #sticky-nav a.active {
-        background-color: #3e8e41; /* Active button color */
+        background-color: #697565; /* Active button color */
         transform: scale(1.05); /* Slight scale effect on active */
     }
 </style>
@@ -210,17 +210,19 @@
 </section>
 <section id="about" class="bg-offWhite p-5">
     <h1 class="text-3xl font-bold text-center mb-5">Meet Our Devs!</h1>
-    <div class="flex justify-center mt-4">
-        <img src="{% static 'images/about_us.jpg' %}" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
-        <p class="text-lg text-center max-w-2xl mx-auto mb-4"> Anaiah</p>
-    </div>
-    <div class="flex justify-center mt-4">
-        <img src="{% static 'images/about_us.jpg' %}" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
-        <p class="text-lg text-center max-w-2xl mx-auto mb-4"> Brian</p>
-    </div>
-    <div class="flex justify-center mt-4">
-        <img src="{% static 'images/about_us.jpg' %}" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
-        <p class="text-lg text-center max-w-2xl mx-auto mb-4"> Gabby</p>
+    <div class="flex flex-wrap justify-center mt-4 space-x-4">
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Anaiah</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Brian</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4">
+            <p class="text-lg text-center mb-2">Gabby</p>
+            <img src="https://imgur.com/1i9j29b.png" alt="About Us" class="rounded-lg shadow-lg w-full md:w-1/2">
+        </div>
     </div>
 </section>
 {% endif %}
@@ -286,6 +288,19 @@
                 link.classList.add('active');
             }
         });
+    });
+
+    navLinks.forEach(link => {
+        let section = document.querySelector(link.getAttribute('href'));
+        
+        if (
+            section.offsetTop <= fromTop &&
+            section.offsetTop + section.offsetHeight > fromTop
+        ) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 
 
