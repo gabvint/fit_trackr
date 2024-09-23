@@ -25,12 +25,12 @@
     }
 
     .slide-in {
-        animation: slide-in 0.3s forwards;
+        animation: slide-in 1s forwards;
         will-change: transform, opacity;
     }
     
     .slide-out {
-        animation: slide-out 0.3s forwards;
+        animation: slide-out 1s forwards;
         will-change: transform, opacity;
     }
 
@@ -133,40 +133,40 @@
     </div>
 </section>
  
-<section id="features" class="bg-sage p-5">
+<section id="features" class="bg-sage p-5 font-questrial">
     <h1 class="text-3xl font-bold text-offWhite text-center mb-5">Features</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-wrap">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Meal Tracking</h2>
             <p class="text-sm">
                 Log your meals effortlessly and keep track of your caloric intake. Our app helps you make informed choices about your nutrition.
             </p>
         </div>
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Workout Logging</h2>
             <p class="text-sm">
                 Track your workouts and monitor your progress. Set goals and push yourself to achieve more with every session.
             </p>
         </div>
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Progress Insights</h2>
             <p class="text-sm">
                 Get personalized insights based on your data to help you stay on track. Celebrate your milestones and achievements along the way.
             </p>
         </div>
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Custom Goals</h2>
             <p class="text-sm">
                 Set your own calorie and workout goals tailored to your lifestyle and preferences. Our app adapts to your needs.
             </p>
         </div>
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Community Support</h2>
             <p class="text-sm">
                 Join our community of fitness enthusiasts for support, tips, and motivation. Share your journey and learn from others.
             </p>
         </div>
-        <div class="feature-card bg-white p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">User-Friendly Interface</h2>
             <p class="text-sm">
                 Enjoy an intuitive and easy-to-use interface designed to enhance your experience and keep you focused on your goals.
@@ -176,19 +176,9 @@
 </section>
 
 <section>
-    <div class="bg-sage p-10 bg-opacity-80" id="reviews" >
+    <div class="bg-slateBlueGreen p-10 font-questrial" id="reviews" >
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
         <div id="reviews-container" class="text-center">
-            <div class="review hidden">
-                <p class="text-yellow-500">Rating: 5 / 5</p>
-                <p class="text-xl text-offWhite font-bold">John Doe</p>
-                <p class="text-sm text-offWhite italic">"This app completely changed how I manage my fitness. Highly recommend!"</p>
-            </div>
-            <div class="review hidden">
-                <p class="text-yellow-500">Rating: 4.5 / 5</p>
-                <p class="text-xl text-offWhite font-bold">Jane Smith</p>
-                <p class="text-sm text-offWhite italic">"A must-have for anyone serious about their health. It's amazing!"</p>
-            </div>
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>
                 <p class="text-xl text-offWhite font-bold">Brian Na</p>
@@ -208,7 +198,7 @@
     </div>
     
 </section>
-<section id="about" class="bg-offWhite p-5">
+<section id="about" class="bg-offWhite p-5 font-questrial">
     <h1 class="text-3xl font-bold text-center mb-5">Meet Our Devs!</h1>
     <div class="flex flex-wrap justify-center mt-4 space-x-4">
         <div class="flex flex-col items-center mb-4">
@@ -253,24 +243,22 @@
 
     showReview(currentIndex)
 
-    setInterval(rotateReviews, 3000)
+    setInterval(rotateReviews, 4000)
     const stickyNav = document.getElementById('sticky-nav');
     const navLinks = stickyNav.querySelectorAll('a');
-    const sections = document.querySelectorAll('section'); // Assuming each section has a tag <section>
+    const sections = document.querySelectorAll('section'); 
 
     window.addEventListener('scroll', () => {
-        // Handle sticky nav appearance
         if (window.scrollY > 50) {
             stickyNav.classList.add('scrolled');
-            stickyNav.style.opacity = '1'; // Set opacity to 1 for visibility
-            stickyNav.style.pointerEvents = 'auto'; // Allow interaction
+            stickyNav.style.opacity = '1';
+            stickyNav.style.pointerEvents = 'auto';
         } else {
             stickyNav.classList.remove('scrolled');
-            stickyNav.style.opacity = '0'; // Hide when at the top
-            stickyNav.style.pointerEvents = 'none'; // Prevent interaction
+            stickyNav.style.opacity = '0'; 
+            stickyNav.style.pointerEvents = 'none';
         }
 
-        // Highlight active section in nav
         let current = '';
 
         sections.forEach(section => {
