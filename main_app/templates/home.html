@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block head %}
 <style>
     @keyframes slide-in {
@@ -40,6 +41,27 @@
         align-items: center;
         justify-content: center; 
     }
+
+    #photos-container {
+        position: relative;
+        height: 400px; /* Set the appropriate height for your photos */
+        overflow: hidden;
+    }
+    
+    .photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    
+    .photo.active {
+        opacity: 1;
+        z-index: 1;
+    }
 </style>
 {% endblock head %}
 
@@ -48,9 +70,9 @@
 {% if not user.is_authenticated %}
 
 
-<section class="mt-10 font-questrial">
-    <div class="flex justify-between items-center">
-        <div class="ml-10 mt-10 content max-w-md">
+<section class=" font-questrial">
+    <div class="flex justify-between items-center bg-cover" style="background: url('{% static 'images/food.jpg' %}') no-repeat center center/cover; height: 400px;">
+        <div class="ml-10 mt-10 content max-w-md bg-offWhite p-5 bg-opacity-70 rounded-md">
             <p class="mb-2">The best app to reach your nutrition and health goals</p>
             <h1 class="text-4xl font-bold">Reach your full potential</h1>
             <h1 class="text-4xl">with FitTrackr</h1>
@@ -76,14 +98,26 @@
                 </button>
             </div>
         </div>
-        <div class="mr-10 mt-10">
-            <img class="w-64" src="https://imgur.com/6MLBOkn.png" alt="Example Dashboard" />
-        </div>
     </div>
 </section>
+  {% comment %} <div class='mt-5'>
+        <div id="photos-container">
+            <div class="photo hidden">
+                <img src="{% static 'images/eating.jpg' %}" alt="eating" class="mx-auto">
+            </div>
+            <div class="photo hidden">
+                <img src="{% static 'images/food.jpg' %}" alt="healthy" class="mx-auto">
+            </div>
+            <div class="photo hidden">
+                <img src="{% static 'images/hiking.jpg' %}" alt="hiking" class="mx-auto">
+            </div>
+            <div class="photo hidden">
+                <img src="{% static 'images/running.jpg' %}" alt="running" class="mx-auto">
+            </div>
+        </div>
+    </div> {% endcomment %}
 
-
-    <div class="mt-4 bg-sage p-5">
+    <div class="bg-sage p-5">
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
         <div id="reviews-container" class="text-center">
             <div class="review hidden">
@@ -113,7 +147,7 @@
             </div>
         </div>
     </div>
-
+    
 </section>
 {% endif %}
 
@@ -144,6 +178,33 @@
     showReview(currentIndex)
 
     setInterval(rotateReviews, 3000)
+
+
+    {% comment %} const photos = document.querySelectorAll('.photo')
+    let currentPhotoIndex = 0
+
+    function showPhoto(index) {
+        photos.forEach((photo, i) => {
+            if (i === index) {
+                photo.classList.remove('hidden')
+                photo.classList.add('slide-in')
+            } else {
+                photo.classList.add('slide-out')
+                setTimeout(() => {
+                    photo.classList.add('hidden')
+                    photo.classList.remove('slide-out')
+                }, 300)
+            }
+        });
+    }
+
+    function rotatePhotos() {
+        currentPhotoIndex = (currentPhotoIndex + 1) % photos.length
+        showPhoto(currentPhotoIndex)
+    }
+
+    showPhoto(currentPhotoIndex)
+    setInterval(rotatePhotos, 4000) {% endcomment %}
 </script>
 
 {% endblock  %}
