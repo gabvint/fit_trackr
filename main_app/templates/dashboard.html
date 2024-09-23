@@ -9,8 +9,8 @@
 {% block content %}
     
 
-    <div class="text-4xl font-quattrocento mt-8 ml-4 sm:ml-8 italic text-center sm:text-left">
-        <p>{{ user.first_name }} {{ user.last_name }}'s FitTrackr</p>
+    <div class="text-4xl font-quattrocento mt-8 ml-4 sm:ml-8 text-center sm:text-left">
+        <p class="text-center font-questrial ">{{ user.first_name }}'s FitTrackr</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-8 lg:gap-32 justify-center px-4 sm:px-0">
@@ -61,12 +61,12 @@
         </div>
     
         <div class="bg-white w-full max-w-full md:max-w-[525px] h-full mx-auto md:ml-7 md:mr-5 p-9 rounded-lg font-questrial">
-            <div class="text-3xl font-quattrocento">
+            <div class="text-3xl font-questrial text-center">
                 See all your recent logs
             </div>
     
             {% comment %} date selector {% endcomment %}
-            <div class="mt-4">
+            <div class="mt-4 ">
                 <form method="GET" action="{% url 'user_dashboard' %}" class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <label for="workout_date" class="text-lg text-gray-700">Select Date:</label>
                     <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
