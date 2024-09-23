@@ -7,95 +7,181 @@
 {% endblock head %}
 
 {% block content %}
-     <div class="container mx-auto p-6 " style="background-color: #3c3d37 ;">
-        <div class="mb-6">
-            {% if user.is_authenticated %}
-                <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ user.username }}'s FitTrackr</h1>
-            {% else %}
-                <h1 class="text-3xl font-bold text-gray-800 mb-6">Welcome to Fittrrackr</h1>
-            {% endif %}    
-            <div>
-                <form method="GET" action="{% url 'user_dashboard' %}" class="flex items-center space-x-4">
-                    <label for="workout_date" class="text-lg text-gray-700">Date:</label>
-                    <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
-                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
-                </form>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
-                <h2 class="text-2xl font-semibold mb-2">Calories Remaining</h2>
-                <p class="text-gray-700"> Goal: {{calorie_goal}}  - Meals: {{ total_meal_calories }} + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }} </p>
-            </div>
-            <div class="col-span-3 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
-                    <h3 class="text-xl font-semibold mb-2"> Calorie Goal</h3>
-                    <p>{{total_meal_calories}}/{{calorie_goal}} Calories</p>
-                </div>   
-                <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
-                    <h3 class="text-xl font-semibold mb-2"> Workout Goal</h3>
-                    <p>{{todays_workout_count}}/{{workout_goal}} Workouts</p>
-                </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
-                <h2 class="text-2xl font-semibold mb-4">Recent Meals</h2>
-                <ul class="list-disc pl-5 space-y-2">
-                    {% for meal in recent_meals %}
-                        <li>{{ meal.get_meal_display }}: {{ meal.calories }} calories</li>
-                    {% empty %}
-                        <li>No recent meal entries available</li>
-                    {% endfor %}
-                </ul>
-                <div class='flex justify-center'>
-                    <div id="meal-chart" style="width: 600px; height: 400px;"></div>
-                </div>
-                <a href="{% url 'meal_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
-            </div>
-            <div class="col-span-3 md:col-span-1 rounded-lg" style="background-color:#697565; color:#e3dfcc;">
-                <h2 class="text-2xl font-semibold mb-4">Recent Workouts</h2>
-                <ul class="list-disc pl-5 space-y-2">
-                    {% for workout in recent_workouts %}
-                        <li>{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
-                    {% empty %}
-                        <li>No recent workouts available</li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'workout_log' %}" class="text-blue-500 hover:underline mt-4 block">See All -> </a>
-            </div>
-        <div>
-    </div> 
+    
 
-
-    <div class=" text-4xl font-quattrocento mt-8 ml-8 italic">
+    <div class="text-4xl font-quattrocento mt-8 ml-4 sm:ml-8 italic text-center sm:text-left">
         <p>{{ user.first_name }} {{ user.last_name }}'s FitTrackr</p>
     </div>
 
-    <div class="grid md:grid-cols-2 mt-8 gap-32 justify-center">
-        <div class="bg-blue-50 w-full max-w-[1000px] ml-20">
-            The goals go here and calculation
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-8 lg:gap-32 justify-center px-4 sm:px-0">
+ 
+        <div class="bg-white w-full max-w-full md:max-w-[800px] lg:max-w-[1000px] mx-auto md:ml-20 p-6 rounded-lg font-questrial">
+
+            <div class=" flex justify-between gap-5 mt-5">
+                <div class="bg-white w-full border border-cream rounded-md p-3">
+                    <p class=" text-xl md:text-2xl font-bold ml-2 mt-2">Calorie Goal</p>
+                    <p class=" text-center text-lg md:text-xl">
+                    <span class="{% if total_meal_calories > calorie_goal %} text-terracotta {% else %} text-sage {% endif %} font-extrabold">
+                        {{total_meal_calories}}
+                    </span>/ {{calorie_goal}} Calories
+                    </p>
+
+                </div>
+                <div class=" bg-white w-full border border-cream rounded-md p-3">
+                    <p class=" text-xl md:text-2xl font-bold ml-2 mt-2">Workout Goal</p>
+                    <p class=" text-center text-lg md:text-xl">
+                        <span class="{% if todays_workout_count > workout_goal %} text-terracotta {% else %} text-sage {% endif %} font-extrabold">
+                            {{todays_workout_count}}
+                        </span>/ {{workout_goal}} Workouts
+                    </p>
+                </div>
+            </div>
+
+
+            <div class=" bg-white rounded-md border p-5 mt-6 border-cream">
+                <p class=" text-xl md:text-2xl font-bold text-center">Calories Remaining</p>
+                <p class="text-grey text-base md:text-lg text-center"> 
+                    Goal: 
+                    <span class=" font-extrabold">{{calorie_goal}}</span>  
+                    - Meals: 
+                    <span class=" {% if total_meal_calories > calorie_goal %} text-terracotta {% else %} text-sage {% endif %} font-extrabold">
+                        {{ total_meal_calories }}
+                    </span> 
+                    + Workouts: {{ total_workout_calories }} = Remaining:  {{ net_calories }}
+                </p>
+
+                <div class='flex rounded-lg shadow-md text-grey mx-auto mt-6 mb-6 h-64 w-80 md:h-96 md:w-96'>
+                    <div id="calorie-breakdown-graph" class=" w-full md:w-full rounded-xl"></div>
+                </div>
+        
+
+            </div>
+
+
         </div>
     
-        <div class="bg-white w-full md:w-[525px] h-full ml-7 mr-5 p-9 rounded-lg">
-            <div>
-                <form method="GET" action="{% url 'user_dashboard' %}" class="flex items-center space-x-4">
+        <div class="bg-white w-full max-w-full md:max-w-[525px] h-full mx-auto md:ml-7 md:mr-5 p-9 rounded-lg font-questrial">
+            <div class="text-3xl font-quattrocento">
+                See all your recent logs
+            </div>
+    
+            {% comment %} date selector {% endcomment %}
+            <div class="mt-4">
+                <form method="GET" action="{% url 'user_dashboard' %}" class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <label for="workout_date" class="text-lg text-gray-700">Select Date:</label>
                     <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
                     
-                    <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-                    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+                    <button type="submit" class="relative rounded-md px-4 py-2 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                    hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
                         <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
                         opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
                         <span class='relative'>Submit</span>
                     </button>
                 </form>
             </div>
+
+            {% comment %} recent meal data  {% endcomment %}
+            <div class=" bg-white rounded-md border p-5 mt-6 border-cream">
+            
+               <div class=" flex justify-between mb-2">
+                    <p class="  text-xl md:text-2xl">Recent Meals</p>
+
+                    <a href="{% url 'create_meals' %}">
+                        <div class="relative rounded-md py-1 w-20 text-center overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                            hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
+                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                            opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span class="relative">Add Meal</span>
+                        </div>
+                    </a>
+               </div>
+
+                <ul class="pl-5 space-y-2 list-none text-grey">
+                    {% for meal in recent_meals %}
+                        <div class=" flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="green" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <li class=" text-base md:text-lg">{{ meal.get_meal_display }}: {{ meal.calories }} calories</li>
+                        </div>
+                    {% empty %}
+                        <li class=" text-base md:text-lg">No recent meal entries available</li>
+                    {% endfor %}
+                </ul>
+                
+                {% comment %} plotly {% endcomment %}
+
+                {% if recent_meals %}
+                    <div class='flex rounded-lg shadow-md text-grey mx-auto mt-6 mb-6 h-64 w-80 md:h-96 md:w-96'>
+                        <div id="meal-chart" class=" w-full md:w-full rounded-xl"></div>
+                    </div>
+                {% endif %}
+
+                <a href="{% url 'meal_log' %}">
+                    <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                        hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                        <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                        opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                        <span class="relative">See all</span>
+                    </div>
+                </a>
+                
+            </div>
+
+            {% comment %} workout log {% endcomment %}
+            <div class=" bg-white rounded-md border p-5 mt-6 border-cream">
+            
+                <div class=" flex justify-between mb-2">
+                     <p class="  text-xl md:text-2xl">Recent workouts</p>
+ 
+                     <a href="{% url 'create_workout' %}">
+                         <div class="relative rounded-md py-1 w-28 text-center overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                             hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
+                             <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                             opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                             <span class="relative">Add Workout</span>
+                         </div>
+                     </a>
+                </div>
+ 
+                 <ul class="pl-5 space-y-2 list-none text-grey">
+                     {% for workout in recent_workouts %}
+                         <div class=" flex items-center gap-1">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="green" class="size-5">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                             </svg>
+                             <li class=" text-base md:text-lg">{{ workout.name }} -{{ workout.calorie_lost }} calories</li>
+                         </div>
+                     {% empty %}
+                         <li class=" text-base md:text-lg">No recent meal entries available</li>
+                     {% endfor %}
+                 </ul>
+                 
+                 {% comment %} plotly {% endcomment %}
+ 
+                 {% comment %} {% if recent_meals %}
+                     <div class='flex rounded-lg shadow-md text-grey mx-auto mt-6 mb-6 h-64 w-80 md:h-96 md:w-96'>
+                         <div id="meal-chart" class=" w-full md:w-full rounded-xl"></div>
+                     </div>
+                 {% endif %} {% endcomment %}
+ 
+                 <a href="{% url 'workout_log' %}">
+                     <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                         hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                         <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                         opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                         <span class="relative">See all</span>
+                     </div>
+                 </a>
+                 
+             </div>
+
         </div>
     </div>
 
+    
     <script>
-        const data = [{
+        const mealData = [{
             values: {{ values|safe }},
             labels: {{ labels|safe }},
             type: 'pie',
@@ -116,16 +202,58 @@
             }
         }];
 
-        const layout = {
+        const layoutMeal = {
             title: 'Meal Breakdown',
             paper_bgcolor: 'rgba(0,0,0,0)',
             plot_bgcolor: 'rgba(0,0,0,0)',
             font: {
-            color: '#fff'
+            color: '#3C3D37'
             }
         };
 
-        Plotly.newPlot('meal-chart', data, layout);
+        Plotly.newPlot('meal-chart', mealData, layoutMeal);
+
+         // Sample data
+        const totalMealCalories = {{ total_meal_calories }};
+        const totalWorkoutCalories = {{ total_workout_calories }};
+        const calorieGoal = {{ calorie_goal}}; 
+        const caloriesRemaining = calorieGoal - totalMealCalories + totalWorkoutCalories;
+
+        
+
+        // Data for the pie chart
+        const goalData = [{
+            values: [totalMealCalories, totalWorkoutCalories, caloriesRemaining],
+            labels: ['Meal Calories', 'Workout Calories', 'Calories Remaining'],
+            type: 'pie', 
+            marker: {
+                colors: [
+                '#565E50',
+                '#ECDFCC',
+                '#B44C43',
+                '#FFAB76',
+                '#F5B7B1',
+                '#FFD700',
+                '#A2D2FF',
+                '#6AB7D8',
+                '#B5B5B5',
+                '#D1CFC7',
+                '#F1F1F1',
+                '#4B3F3B']
+            }
+        }];
+
+        // Layout for the chart
+        const layoutGoals = {
+            title: 'Calorie Breakdown',
+            font: {
+                color: '#3C3D37'
+            }
+        };
+
+        // Create the plot
+        Plotly.newPlot('calorie-breakdown-graph', goalData , layoutGoals);
+
     </script>
 {% endblock content %}
 
