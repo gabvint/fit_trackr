@@ -150,8 +150,8 @@ class WorkoutForm(forms.ModelForm):
         Field('notes'),
         HTML(
           """
-           <button type="submit" class="relative mt-4 rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-                hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+           <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
                     <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
                     opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
                     <span class='relative'>Submit</span>
@@ -189,7 +189,7 @@ class MealForm(forms.ModelForm):
     #     })
     
     
-    self.fields['name'].widget.attrs['placeholder'] = 'Enter workout name'
+    self.fields['name'].widget.attrs['placeholder'] = 'Enter meal name'
     self.fields['calories'].widget.attrs['placeholder'] = 'Calories gained'
     self.fields['notes'].widget.attrs['placeholder'] = 'Additional notes'
 
@@ -205,8 +205,8 @@ class MealForm(forms.ModelForm):
         Field('notes'),
         HTML(
           """
-           <button type="submit" class="relative mt-4 rounded-full px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-                hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300">
+           <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
                     <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
                     opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
                     <span class='relative'>Submit</span>
