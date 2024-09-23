@@ -46,7 +46,14 @@
 {% block content %}
 
 {% if not user.is_authenticated %}
-
+<div id="sticky-nav" class="bg-sage p-4 fixed top-0 left-0 right-0 opacity-0 transition-opacity duration-300 z-50 shadow-md">
+    <div class="flex justify-center space-x-4">
+        <a href="#reviews" class="text-offWhite hover:text-yellow-500">User Reviews</a>
+        <a href="#features" class="text-offWhite hover:text-yellow-500">Features</a>
+        <a href="#about" class="text-offWhite hover:text-yellow-500">About Us</a>
+        <a href="#contact" class="text-offWhite hover:text-yellow-500">Contact</a>
+    </div>
+</div>
 
 <section class="mt-10 font-questrial">
     <div class="flex justify-between items-center">
@@ -60,20 +67,20 @@
             <div class="flex gap-3 mt-4">
                 <button>
                     <a href="{% url 'signup' %}">
-                        <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                        <div class="relative rounded-md mt-2 py-1 w-auto text-center px-4 inline-block overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
                             <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative">Sign Up</span>
+                            <span class="relative">Get Started Now</span>
                         </div>
                     </a>
                 </button>
-                <button>
+                {% comment %} <button>
                     <a href="{% url 'signin' %}">
                         <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
                             <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                             <span class="relative">Sign In</span>
                         </div>
                     </a>
-                </button>
+                </button> {% endcomment %}
             </div>
         </div>
         <div class="mr-10 mt-10">
@@ -83,7 +90,7 @@
 </section>
 
 
-    <div class="mt-4 bg-sage p-5">
+    <div class="mt-4 bg-sage p-5 " id="reviews">
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
         <div id="reviews-container" class="text-center">
             <div class="review hidden">
@@ -144,6 +151,17 @@
     showReview(currentIndex)
 
     setInterval(rotateReviews, 3000)
+    const stickyNav = document.getElementById('sticky-nav');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            stickyNav.style.opacity = '0.5'; // Set opacity to 50% when scrolled
+            stickyNav.style.pointerEvents = 'auto'; // Allow interaction
+        } else {
+            stickyNav.style.opacity = '0'; // Hide when at the top
+            stickyNav.style.pointerEvents = 'none'; // Prevent interaction
+        }
+    });
 </script>
 
 {% endblock  %}
