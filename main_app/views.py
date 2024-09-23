@@ -50,12 +50,9 @@ def get_workouts_by_muscle_group(request):
     workouts_response = get_workouts(muscle_group)
     if workouts_response.status_code == 200:
         data = workouts_response.json()
-        print(data)
         workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
         return JsonResponse({'workouts': workout_list})
-    else:
-        return JsonResponse({'error': 'Failed to fetch workouts'}, status=workouts_response.status_code)
-    # return JsonResponse({'workouts': []})
+    return JsonResponse({'workouts': []})
 
 
 class CreateMeals(CreateView, LoginRequiredMixin):
