@@ -133,7 +133,7 @@
             <div class=" bg-white rounded-md border p-5 mt-6 border-cream">
             
                 <div class=" flex justify-between mb-2">
-                     <p class="  text-xl md:text-2xl">Recent workouts</p>
+                     <p class="  text-xl md:text-2xl">Recent Workouts</p>
  
                      <a href="{% url 'create_workout' %}">
                          <div class="relative rounded-md py-1 w-28 text-center overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
@@ -214,15 +214,11 @@
 
         Plotly.newPlot('meal-chart', mealData, layoutMeal);
 
-         // Sample data
         const totalMealCalories = {{ total_meal_calories }};
         const totalWorkoutCalories = {{ total_workout_calories }};
         const calorieGoal = {{ calorie_goal}}; 
         const caloriesRemaining = calorieGoal - totalMealCalories + totalWorkoutCalories;
-
         
-
-        // Data for the pie chart
         const goalData = [{
             values: [totalMealCalories, totalWorkoutCalories, caloriesRemaining],
             labels: ['Meal Calories', 'Workout Calories', 'Calories Remaining'],
@@ -242,18 +238,16 @@
                 '#F1F1F1',
                 '#4B3F3B']
             }
-        }];
+        }]
 
-        // Layout for the chart
         const layoutGoals = {
             title: 'Calorie Breakdown',
             font: {
                 color: '#3C3D37'
             }
-        };
+        }
 
-        // Create the plot
-        Plotly.newPlot('calorie-breakdown-graph', goalData , layoutGoals);
+        Plotly.newPlot('calorie-breakdown-graph', goalData , layoutGoals)
 
     </script>
 {% endblock content %}

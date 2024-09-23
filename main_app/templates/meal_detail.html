@@ -10,37 +10,52 @@
 
 <section class='font-quattrocento'>
     <div class=' ml-2 mt-2'>
-        <button ><a href="{% url 'meal_log' %}" class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage">Back</a></button>
+        <button >
+            <a href="{% url 'meal_log' %}">
+                <div class="relative rounded-md mt-2 ml-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                    <span class="relative">Back</span>
+                </div>
+                
+            </a>
+        </button>
+
     </div>
-    <div class='flex justify-center m-5 text-4xl'>
-        <h1>Meal Details</h1>
+    <div class='flex justify-center m-8 text-4xl font-semibold text-warmCoffee'>
+        <h1 class="border-b-4 border-lightSage pb-2">Meal Details</h1>
     </div>
-    <div class='flex justify-center mt-5'>
-        <table class='table-auto rounded-xl bg-offWhite text-warmCoffee'>
+    
+    <div class='flex justify-center mt-8'>
+        <table class='table-auto rounded-lg shadow-lg bg-offWhite text-warmCoffee text-lg w-96'>
             <tbody>
-                <tr>
-                    <th class="text-right pl-5 pr-5">Date:</th>
-                    <td class='pl-5 pr-5'>{{ meal.day }}</td>
+                <tr class="border-b">
+                    <th class="text-right p-4 font-medium">Date:</th>
+                    <td class='p-4'>{{ meal.day }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-right p-4 font-medium">Meal:</th>
+                    <td class='p-4 text-wrap'>{{ meal.get_meal_display }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-right p-4 font-medium">Food:</th>
+                    <td class='p-4'>{{ meal.name }}</td>
+                </tr>
+                <tr class="border-b">
+                    <th class="text-right p-4 font-medium">Calories:</th>
+                    <td class='p-4'>{{ meal.calories }}</td>
                 </tr>
                 <tr>
-                    <th class="text-right pl-5 pr-5">Meal:</th>
-                    <td class='pl-5 pr-5 text-wrap'>{{ meal.get_meal_display }}</td>
-                </tr>
-                <tr>
-                    <th class="text-right pl-5 pr-5">Food:</th>
-                    <td class='pl-5 pr-5'>{{ meal.name }}</td>
-                </tr>
-                <tr>
-                    <th class="text-right pl-5 pr-5">Calories:</th>
-                    <td class='pl-5 pr-5'>{{ meal.calories }}</td>
-                </tr>
-                <tr>
-                    <th class="text-right pl-5 pr-5">Notes:</th>
-                    <td class='pl-5 pr-5'>{{ meal.notes }}</td>
+                    <th class="text-right p-4 font-medium">Notes:</th>
+                    <td class='p-4'>{{ meal.notes }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    
+    
+
     <div id='workout-info'>
     {% comment %} {% detail in workout_details %}
         {{detail.Muscles}}
@@ -50,9 +65,27 @@
     </div>
 
 
-    <div class='flex justify-center mt-10 gap-2'>
-        <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'meal_update' meal.id %}" >Edit</a></button>
-        <button class="bg-darkerSage text-white font-semibold py-2 px-4 rounded hover:bg-sage"><a href="{% url 'meal_delete' meal.id %}" >Delete</a></button>
+    <div class='flex justify-center mt-4 mb-8 gap-2'>
+
+        <button>
+            <a href="{% url 'meal_update' meal.id %}">
+                <div class="relative rounded-md mt-2 ml-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span class="relative">Edit</span>
+            </div>
+            </a>
+        </button>
+        <button>
+            <a href="{% url 'meal_delete' meal.id %}">
+                <div class="relative rounded-md mt-2 ml-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span class="relative">Delete</span>
+            </a>
+        </button>
     </div>
 </secton>
 
