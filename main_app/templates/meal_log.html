@@ -24,7 +24,7 @@
         </div>
         <div class='flex justify-center'>
             <table class='table-auto rounded-xl bg-offWhite text-warmCoffee'>
-                <thead>
+                <thead class=" border-b">
                     <tr>
                         <th class='pl-5 pr-5 pt-2'>Meal Type</th>
                         <th class='pl-5 pr-5 pt-2'>Date</th>
@@ -38,12 +38,16 @@
                         <td class='text-wrap pl-5 pr-5'>{{ meal.get_meal_display }}</td>
                         <td class='text-center pl-5 pr-5'>{{ meal.day }}</td>
                         <td class='text-center pl-5 pr-5'>{{ meal.calories }}</td>
-                        <td class='text-center pl-5 pr-5 pb-2'><a href="{% url 'meal_detail' meal.id %}"><div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
-                            hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-                            opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative">View</span>
-                        </div></a></td>
+                        <td class='text-center pl-5 pr-5 pb-2'>
+                            <a href="{% url 'meal_detail' meal.id %}">
+                                <div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
+                                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                                    <span class="relative">View</span>
+                                </div>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
