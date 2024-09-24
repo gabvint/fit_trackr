@@ -36,8 +36,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # 'main_app',
-    'tailwind',
-    'theme',
     'main_app.apps.MainAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +46,8 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'crispy_forms',
     'crispy_tailwind',
+    'tailwind',
+    'theme',
 
 ]
 
@@ -56,6 +56,9 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+NPM_BIN_PATH = '/usr/local/bin/npm'
+
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
