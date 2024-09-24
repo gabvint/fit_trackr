@@ -33,10 +33,13 @@ MEALS = (
 class NewUser(AbstractUser):
     workout_goal = models.IntegerField(null=True, blank=True)
     calorie_goal = models.IntegerField(null=True, blank=True)
+    profile_picture = models.ImageField(default='fallback.png', blank=True)
+    
     def get_absolute_url(self):
         return reverse("user_dashboard")
 
-
+    def get_success_url(self):
+        return reverse('user_profile', kwargs={'pk': self.object.pk})
 
 class Day(models.Model):
     date = models.DateField(default=timezone.now)

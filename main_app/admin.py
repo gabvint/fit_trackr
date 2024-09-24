@@ -9,10 +9,10 @@ class CustomUserAdmin(UserAdmin):
   add_form = CustomUserCreationForm
   form = CustomUserChangeForm
   model = NewUser
-  list_display = ['username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal']
+  list_display = ['username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal', 'profile_picture']
   
   fieldsets = list(UserAdmin.fieldsets)
-  fieldsets[1] =  ('Personal Info', {'fields' : ('first_name', 'last_name', 'email', 'workout_goal', 'calorie_goal')})
+  fieldsets[1] =  ('Personal Info', {'fields' : ('first_name', 'last_name', 'email', 'workout_goal', 'calorie_goal', 'profile_picture')})
   fieldsets = tuple(fieldsets)
   
 admin.site.register(NewUser, CustomUserAdmin)
