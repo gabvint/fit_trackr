@@ -58,3 +58,5 @@
   - Ability to view additional workout details from API
   - Ability to share goals with friends, and comment on each others’ goals
   - Review carousel to utilize real reviews left about app
+- **Reset Password Feature**
+  - Enables users who are logged out to reset their password via email verification process
