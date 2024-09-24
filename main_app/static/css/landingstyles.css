@@ -97,3 +97,9 @@
   background-color: #697565;
   transform: scale(1.05);
 }
+
+.feature-image {
+  margin-top: 1rem; /* Adjust as needed */
+  margin-bottom: 1rem; /* Adjust as needed */
+  width: auto; /* Keep image width flexible */
+}
