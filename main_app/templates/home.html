@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <style>
     @keyframes slide-in {
         0% {
@@ -156,7 +157,7 @@
     
 </section>
 <section id="features" class="bg-sage p-5 font-questrial">
-    <h1 class="text-3xl font-bold text-offWhite text-center mb-5">Features</h1>
+    <h1 class="text-3xl font-bold text-offWhite text-center mb-5 ">Features</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-wrap">
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Meal Tracking</h2>
@@ -227,6 +228,7 @@
             <p class="text-lg text-center mb-2">Brian</p>
             <img src="https://imgur.com/SBHpkyR.png" alt="About Us" class=" w-full md:w-1/2">
         </div>
+        <a href=""></a>
         <div class="flex flex-col items-center mb-4 mx-2">
             <p class="text-lg text-center mb-2">Gabby</p>
             <img src="https://imgur.com/PeMcTMt.png" alt="About Us" class=" w-full md:w-1/2">
@@ -310,7 +312,7 @@
     });
 
 
-   
+ 
 </script>
 
 {% endblock  %}

@@ -9,7 +9,7 @@ from .api import get_workouts
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Workout, NewUser, User, Day, Meal, MEALS
-from .forms import WorkoutForm, MealForm, CustomAuthenticationForm, SetPasswordForm
+from .forms import WorkoutForm, MealForm, CustomAuthenticationForm, SetPasswordForm, UserProfileUpdateForm
 from datetime import datetime
 from django.db.models import Count
 from django.contrib import messages
@@ -150,8 +150,7 @@ class UserProfile(DetailView, LoginRequiredMixin):
 
 class UserProfileUpdate(UpdateView, LoginRequiredMixin):
     model = NewUser
-    fields = ['first_name', 'last_name',
-              'username', 'email', 'profile_picture']
+    form_class = UserProfileUpdateForm
 
     def get_success_url(self):
         return reverse('user_profile', kwargs={'pk': self.object.pk})
