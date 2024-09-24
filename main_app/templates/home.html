@@ -2,107 +2,8 @@
 {% load static %}
 {% block head %}
 
-<style>
-    @keyframes slide-in {
-        0% {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
+<link rel="stylesheet" href="{% static 'css/landingstyles.css' %}">
 
-    @keyframes slide-out {
-        0% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-    }
-
-    .slide-in {
-        animation: slide-in 1s forwards;
-        will-change: transform, opacity;
-    }
-    
-    .slide-out {
-        animation: slide-out 1s forwards;
-        will-change: transform, opacity;
-    }
-
-    #reviews-container {
-        max-height: 120px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-    }
-
-    #photos-container {
-        position: relative;
-        height: 400px;
-        overflow: hidden;
-    }
-    
-    .photo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-    }
-    
-    .photo.active {
-        opacity: 1;
-        z-index: 1;
-    }
-
-
-    #sticky-nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        transition: display 1s ease, opacity 0.3s ease, visibility 1s ease, transform 1s ease, background-color 0.3s, box-shadow 0.3s;
-        background-color: rgba(255, 255, 255, 0);
-        opacity: 0;
-        display: none;
-        transform: translateY(-100%);
-    }
-    
-    #sticky-nav.scrolled {
-        background-color: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        opacity: 1;
-        display: block;
-        transform: translateY(0);
-    }
-    #sticky-nav a {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 0 10px;
-        background-color: #697565;
-        color: #ECDFCC;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s, transform 0.3s;
-    }
-    
-    #sticky-nav a:hover {
-        background-color: #697565;
-    }
-    
-    #sticky-nav a.active {
-        background-color: #697565;
-        transform: scale(1.05);
-    }
-</style>
 {% endblock head %}
 
 {% block content %}
@@ -162,43 +63,54 @@
     </div>
     
 </section>
-<section id="features" class="bg-sage p-5 font-questrial ">
-    <h1 class="text-3xl font-bold text-offWhite text-center mb-5 ">Features</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 text-wrap">
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+<section id="features" class="bg-sage p-5 font-questrial">
+    <h1 class="text-3xl font-bold text-offWhite text-center mb-5">Features</h1>
+    <div class="flex flex-wrap justify-center gap-4 text-wrap text-center">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]">
             <h2 class="text-xl font-semibold">Meal Tracking</h2>
             <p class="text-sm">
                 Log your meals effortlessly and keep track of your caloric intake. Our app helps you make informed choices about your nutrition.
-            </p>
-            <img src="https://imgur.com/GfYxnkL.png"/>
+            </p>      
+            <div class='flex justify-center'>
+                 <img class='w-auto' src="https://imgur.com/GfYxnkL.png" />
+            </div>
+            
         </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]">
             <h2 class="text-xl font-semibold">Workout Logging</h2>
             <p class="text-sm">
                 Track your workouts and monitor your progress. Set goals and push yourself to achieve more with every session.
             </p>
-            <img src="https://imgur.com/yX1NdGl.png"/>
+            <div class='flex justify-center'>
+                <img src="https://imgur.com/yX1NdGl.png" />
+            </div>
         </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]">
             <h2 class="text-xl font-semibold">Progress Insights</h2>
             <p class="text-sm">
                 Get personalized insights based on your data to help you stay on track. Celebrate your milestones and achievements along the way.
             </p>
-            <img src="https://imgur.com/0jJ5hbh.png"/>
+            <div class='flex justify-center'>
+                <img src="https://imgur.com/0jJ5hbh.png" />
+            </div>
         </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]">
             <h2 class="text-xl font-semibold">Custom Goals</h2>
             <p class="text-sm">
                 Set your own calorie and workout goals tailored to your lifestyle and preferences. Our app adapts to your needs.
             </p>
-            <img src="https://imgur.com/3a8lX3s.png"/>
+            <div class='flex justify-center'>
+                <img src="https://imgur.com/7r3xfDz.png" />
+            </div>
         </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]">
             <h2 class="text-xl font-semibold">Personalization</h2>
             <p class="text-sm">
                 Personalize your experience by setting a unique username, updating your email, and uploading a profile photo. Customize your profile to make it truly yours!
             </p>
-            <img src="https://imgur.com/12fAYxa.png"/>
+            <div class='flex justify-center'>
+                <img src="https://imgur.com/bkgCWC1.png" />
+            </div>
         </div>
     </div>
 </section>
