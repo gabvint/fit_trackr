@@ -1,7 +1,7 @@
 from django import forms # type: ignore
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import NewUser, Workout, Meal
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, HTML
 
@@ -55,27 +55,7 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': 'Email'
         })
     )
-    # calorie_goal = forms.IntegerField(
-    #     label='',
-    #     widget=forms.NumberInput(attrs={
-    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-    #         'placeholder': 'Calorie Goal'
-    #     })
-    # )
-    # workout_goal = forms.IntegerField(
-    #     label='',
-    #     widget=forms.NumberInput(attrs={
-    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-    #         'placeholder': 'Workout Goal'
-    #     })
-    # )
-    # meal_goal = forms.IntegerField(
-    #     label='',
-    #     widget=forms.NumberInput(attrs={
-    #         'class': 'w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-darkerSage',
-    #         'placeholder': 'Meal Goal'
-    #     })
-    # )
+   
     password1 = forms.CharField(
         label='',
         widget=forms.PasswordInput(attrs={
@@ -107,6 +87,11 @@ class CustomUserChangeForm(UserChangeForm):
     model = NewUser
     fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal')
     
+
+class SetPasswordForm(SetPasswordForm):
+    class Meta:
+        model = NewUser
+        fields = ['new_password1', 'new_password2']
     
     
 class WorkoutForm(forms.ModelForm):

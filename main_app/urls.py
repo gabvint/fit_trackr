@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
   path('',views.home,name='home'),
@@ -20,5 +21,11 @@ urlpatterns = [
   path('meallog/', views.meal_log, name="meal_log"),
   path('meallog/<int:meal_id>/', views.meal_detail, name="meal_detail"),
   path('meallog/<int:pk>/update/', views.MealUpdate.as_view(), name='meal_update'),
-  path('meallog/<int:pk>/delete/', views.MealDelete.as_view(), name='meal_delete')
+  path('meallog/<int:pk>/delete/', views.MealDelete.as_view(), name='meal_delete'), 
+  path('profile/<int:pk>/', views.UserProfile.as_view(), name="user_profile"),
+  path('profile/<int:pk>/update', views.UserProfileUpdate.as_view(), name="user_update"),
+  #path('changepassword/', views.password_change, name="password_change"),
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

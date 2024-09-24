@@ -7,30 +7,31 @@
 
 {% block content %}
 
-<div class='min-h-screen grid place-items-center'>
-    <form action="" method="post" class="w-96 md:w-[450px] mx-auto bg-offWhite p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial grid place-items-center">
+<div class='mt-10'>
+    <form action="" method="post" enctype="multipart/form-data"
+     class="w-96 md:w-[450px] mx-auto bg-offWhite p-8 rounded-lg shadow-md mb-12 font-questrial grid">
         {% csrf_token %}
 
-        {% comment %} <div class="mb-4">
-            <label for="{{ form.workout_goal.id_for_label }}" class="block text-grey text-base font-bold mb-2">Workout Goal:</label>
-            {{ form.workout_goal }}
-        </div>
-        <div class="mb-4">
-            <label for="{{ form.calorie_goal.id_for_label }}" class="block text-grey text-base font-bold mb-2">Calorie Goal:</label>
-            {{ form.calorie_goal }}
-        </div>
-        <div class="mb-4">
-            <label for="{{ form.meal_goal.id_for_label }}" class="block text-grey text-base font-bold mb-2">Meal Goal:</label>
-            {{ form.meal_goal }}
-        </div> {% endcomment %}
-
         {{ form|crispy}}
-        <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
-            hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
-            <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-            opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
-            <span class='relative'>Submit</span>
-        </button>
+        
+        <div class="flex justify-between mt-6">
+            <button type="submit" class="relative mt-4 rounded-md px-5 py-1 overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
+                hover:from-black hover:to-grey hover:ring-2 hover:ring-offset-2 hover:ring-grey transition-all ease-out duration-300">
+                <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                <span class='relative'>Submit</span>
+            </button>
+            <button>
+                <a href="{% url 'user_profile' user.id %}">
+                    <div class="relative rounded-md mt-4 py-1 px-2 w-42 text-center overflow-hidden group bg-terracotta text-cream hover:bg-gradient-to-r
+                    hover:from-terracotta hover:to-softRose hover:ring-2 hover:ring-offset-2 hover:ring-softRose transition-all ease-out duration-300">
+                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                    <span class="relative">Cancel</span>
+                </a>
+            </button>
+        </div>
+
     </form>
 </div>
 

@@ -1,0 +1,25 @@
+.jump-effect {
+    transition: transform 0.2s ease; 
+}
+  
+.jump-effect:hover {
+    transform: translateY(-5px); 
+}
+
+  
+.shake-effect {
+transition: transform 0.1s ease; 
+}
+
+.shake-effect:hover {
+animation: shake 0.5s ease;
+}
+
+
+@keyframes shake {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
