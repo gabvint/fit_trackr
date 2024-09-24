@@ -3,6 +3,17 @@
   ## ℹ️ Description
   Welcome to Fittrackr :muscle:! Fittrrackr is a fitness tracking app that monitors your meals and workouts by calculating both caloric intake and loss. It helps users stay on top of their health goals by providing real-time calorie counts and allowing them to set personalized calorie and workout goals.
 
+  <div id="description" align="center">
+  
+  ### [CLICK TO DEMO](https://google.com/)
+
+  # Meet The Team
+  [![LinkedIn Badge](https://img.shields.io/badge/-@nabrian-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/nabrian/)
+  [![LinkedIn Badge](https://img.shields.io/badge/-@blank-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/blank/)
+  [![LinkedIn Badge](https://img.shields.io/badge/-@blank-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/blank/)
+
+  </div>
+
   ## 📸  Screenshots
   | Description       | Screenshot                                                |
   |:-----------------:|-----------------------------------------------------------|
