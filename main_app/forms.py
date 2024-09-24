@@ -87,12 +87,18 @@ class CustomUserChangeForm(UserChangeForm):
     model = NewUser
     fields = ('username', 'first_name', 'last_name', 'email', 'calorie_goal', 'workout_goal')
     
-
+class UserProfileUpdateForm(forms.ModelForm):
+    profile_picture = forms.ImageField(widget=forms.FileInput)
+    class Meta:
+        model = NewUser
+        fields = ['first_name', 'last_name', 'username', 'email', 'profile_picture']
+        
+            
 class SetPasswordForm(SetPasswordForm):
     class Meta:
         model = NewUser
         fields = ['new_password1', 'new_password2']
-    
+
     
 class WorkoutForm(forms.ModelForm):
   class Meta:
