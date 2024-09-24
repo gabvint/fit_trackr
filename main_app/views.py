@@ -195,14 +195,13 @@ def user_dashboard(request):
     meal_counts = Meal.objects.filter(day__user=user, day__date=selected_date) \
         .values('meal') \
         .annotate(count=Count('id'))
-    meal_labels = {key: value for key, value in MEALS}
-    labels = [meal_labels[meal['meal']] for meal in meal_counts]
-    values = [meal['count'] for meal in meal_counts]
-
+    labels = ['Calories Consumed', 'Remaining Calories']
+    remaining_calories = calorie_goal - total_meal_calories
+    values = [total_meal_calories, remaining_calories]
     return render(request, 'dashboard.html', {
-        'recent_meals': recent_meals,
-        'recent_workouts': recent_workouts,
-        'total_meal_calories': total_meal_calories,
+        'recent_meals': recent_meals, 
+        'recent_workouts': recent_workouts, 
+        'total_meal_calories': total_meal_calories,     
         'total_workout_calories': total_workout_calories,
         'net_calories': net_calories,
         'calorie_goal': calorie_goal,
