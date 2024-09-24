@@ -9,8 +9,8 @@
 
   # Meet The Team
   [![LinkedIn Badge](https://img.shields.io/badge/-@nabrian-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/nabrian/)
-  [![LinkedIn Badge](https://img.shields.io/badge/-@blank-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/blank/)
-  [![LinkedIn Badge](https://img.shields.io/badge/-@blank-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/blank/)
+  [![LinkedIn Badge](https://img.shields.io/badge/-@gabtongol-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/gabtongol/)
+  [![LinkedIn Badge](https://img.shields.io/badge/-@anaiahm-blue?style=flat&logo=Linkedin&logoColor=black)](https://www.linkedin.com/in/anaiahm/)
 
   </div>
 
@@ -58,3 +58,5 @@
   - Ability to view additional workout details from API
   - Ability to share goals with friends, and comment on each others’ goals
   - Review carousel to utilize real reviews left about app
+- **Reset Password Feature**
+  - Enables users who are logged out to reset their password via email verification process
