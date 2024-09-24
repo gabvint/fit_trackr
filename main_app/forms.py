@@ -107,17 +107,17 @@ class WorkoutForm(forms.ModelForm):
   
   def __init__(self, *args, **kwargs):
     available_days = kwargs.pop('available_days', None)
-    workout_list = kwargs.pop('workout_list', [])
+    # workout_list = kwargs.pop('workout_list', [])
     # super().__init__(*args, **kwargs)
 
 
     super().__init__(*args, **kwargs)
     if available_days is not None:
       self.fields['day'].queryset = available_days
-    self.fields['name'] = forms.ChoiceField(
-      choices=[('', 'Select a workout')] + [(workout, workout) for workout in workout_list],
-      required=False
-      )
+    # self.fields['name'] = forms.ChoiceField(
+    #   choices=[('', 'Select a workout')] + [(workout, workout) for workout in workout_list],
+    #   required=False
+    #   )
   
   
     self.fields['muscle_group'].widget.attrs['placeholder'] = 'Enter muscle group'
