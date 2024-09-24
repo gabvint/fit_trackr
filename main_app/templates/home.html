@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block head %}
 <style>
     @keyframes slide-in {
@@ -24,12 +25,12 @@
     }
 
     .slide-in {
-        animation: slide-in 0.3s forwards;
+        animation: slide-in 1s forwards;
         will-change: transform, opacity;
     }
     
     .slide-out {
-        animation: slide-out 0.3s forwards;
+        animation: slide-out 1s forwards;
         will-change: transform, opacity;
     }
 
@@ -40,56 +41,162 @@
         align-items: center;
         justify-content: center; 
     }
+
+    #photos-container {
+        position: relative;
+        height: 400px; /* Set the appropriate height for your photos */
+        overflow: hidden;
+    }
+    
+    .photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    
+    .photo.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+
+    #sticky-nav {
+        position: sticky; /* Make it sticky */
+        top: 0; /* Stick to the top */
+        z-index: 1000; /* Ensure it stays on top */
+        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        background-color: rgba(255, 255, 255, 0); /* Initially transparent */
+    }
+    
+    #sticky-nav.scrolled {
+        background-color: rgba(255, 255, 255, 0.8); /* Background when scrolled */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow when scrolled */
+    }
+    #sticky-nav a {
+        display: inline-block; /* Make them behave like buttons */
+        padding: 10px 20px; /* Add padding */
+        margin: 0 10px; /* Space between buttons */
+        background-color: #697565; /* Button background color */
+        color: #ECDFCC; /* Text color */
+        border-radius: 5px; /* Rounded corners */
+        text-decoration: none; /* Remove underline */
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    }
+    
+    #sticky-nav a:hover {
+        background-color: #697565; /* Darker green on hover */
+    }
+    
+    #sticky-nav a.active {
+        background-color: #697565; /* Active button color */
+        transform: scale(1.05); /* Slight scale effect on active */
+    }
 </style>
 {% endblock head %}
 
 {% block content %}
 
 {% if not user.is_authenticated %}
+<div id="sticky-nav" class="bg-sage p-4 fixed top-0 left-0 right-0 opacity-0 transition-opacity duration-300 z-50 shadow-md">
+    <div class="flex justify-center space-x-4">
+        <a href="#reviews" class="text-offWhite hover:text-yellow-500">User Reviews</a>
+        <a href="#features" class="text-offWhite hover:text-yellow-500">Features</a>
+        <a href="#about" class="text-offWhite hover:text-yellow-500">About Us</a>
+    </div>
+</div>
 
-
-<section class='mt-10 font-questrial'>
-    <div class='flex justify-between'>
-        <div class='ml-10 mt-10'>
-            <p class='mb-2'>The best app to reach your nutrition and health goals</p>
-            <h1 class='text-4xl font-bold'>Reach your full potential</h1>
-            <h1 class='text-4xl'>with FitTrackr</h1>
-            <p class='mt-2'>Take charge of your health with the exercise and calorie tracker</p>
-            <div class=" ml-auto flex gap-3 mt-4">
+<section class=" font-questrial">
+    <div class="flex justify-between items-center bg-cover pb-5" style="background: url('{% static 'images/food.jpg' %}') no-repeat center center/cover">
+        <div class="ml-10 mt-10 content max-w-md bg-offWhite p-5 bg-opacity-70 rounded-md">
+            <p class="mb-2">The best app to reach your nutrition and health goals</p>
+            <h1 class="text-4xl font-bold">Reach your full potential</h1>
+            <h1 class="text-4xl">with FitTrackr</h1>
+            <p class="mt-2">
+                FitTrackr is a fitness tracking app that monitors your meals and workouts <br> by calculating both caloric intake and loss. It helps users stay on top of their <br> health goals by providing real-time calorie counts and allowing them to set personalized calorie and workout goals.
+            </p>
+            <div class="flex gap-3 mt-4">
                 <button>
-                    <a href="{% url 'signup' %}"><div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
-                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                    <span class="relative">Sign Up</span>
-                </div></a></button>
-                <button class=""><a href="{% url 'signin' %}"><div class="relative rounded-md mt-2 py-1 w-20 text-center overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r
-                    hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
-                    <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
-                    opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                    <span class="relative">Sign In</span>
-                </div></a></button>
+                    <a href="{% url 'signup' %}">
+                        <div class="relative rounded-md mt-2 py-1 w-auto text-center px-4 inline-block overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
+                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span class="relative">Get Started Now</span>
+                        </div>
+                    </a>
+                </button>
+                
             </div>
-        </div>
-        <div class='mr-60 mt-10'>
-            {% comment %} this is a placeholder for now if we want to use other visuals {% endcomment %}
-            <img class="w-28 md:w-32" src='https://imgur.com/2m8UXn7.png' alt="FitTrackr Logo" />
         </div>
     </div>
+</section>
+ 
+<section id="features" class="bg-sage p-5 font-questrial">
+    <h1 class="text-3xl font-bold text-offWhite text-center mb-5">Features</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-wrap">
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Meal Tracking</h2>
+            <p class="text-sm">
+                Log your meals effortlessly and keep track of your caloric intake. Our app helps you make informed choices about your nutrition.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Workout Logging</h2>
+            <p class="text-sm">
+                Track your workouts and monitor your progress. Set goals and push yourself to achieve more with every session.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Progress Insights</h2>
+            <p class="text-sm">
+                Get personalized insights based on your data to help you stay on track. Celebrate your milestones and achievements along the way.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Custom Goals</h2>
+            <p class="text-sm">
+                Set your own calorie and workout goals tailored to your lifestyle and preferences. Our app adapts to your needs.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Community Support</h2>
+            <p class="text-sm">
+                Join our community of fitness enthusiasts for support, tips, and motivation. Share your journey and learn from others.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">User-Friendly Interface</h2>
+            <p class="text-sm">
+                Enjoy an intuitive and easy-to-use interface designed to enhance your experience and keep you focused on your goals.
+            </p>
+        </div>
+        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
+            <img src="https://imgur.com/6MLBOkn.png"/>
+        </div>
+    </div>
+</section>
 
-    <div class="mt-4 bg-sage p-5">
+<section>
+    <div class="bg-slateBlueGreen p-10 font-questrial" id="reviews" >
         <h1 class="text-3xl font-bold text-offWhite text-center mb-5">What Our Users Say</h1>
         <div id="reviews-container" class="text-center">
-            <div class="review hidden">
-                <p class="text-yellow-500">Rating: 5 / 5</p>
-                <p class="text-xl text-offWhite font-bold">John Doe</p>
-                <p class="text-sm text-offWhite italic">"This app completely changed how I manage my fitness. Highly recommend!"</p>
-            </div>
-            <div class="review hidden">
-                <p class="text-yellow-500">Rating: 4.5 / 5</p>
-                <p class="text-xl text-offWhite font-bold">Jane Smith</p>
-                <p class="text-sm text-offWhite italic">"A must-have for anyone serious about their health. It's amazing!"</p>
-            </div>
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>
                 <p class="text-xl text-offWhite font-bold">Brian Na</p>
@@ -98,7 +205,7 @@
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>
                 <p class="text-xl text-offWhite font-bold">Anaiah Maddox</p>
-                <p class="text-sm text-offWhite italic">"The functionalities of this app is flawless!"</p>
+                <p class="text-sm text-offWhite italic">"The functionalities of this app are flawless!"</p>
             </div>
             <div class="review hidden">
                 <p class="text-yellow-500">Rating: 5 / 5</p>
@@ -107,7 +214,24 @@
             </div>
         </div>
     </div>
-
+    
+</section>
+<section id="about" class="bg-offWhite p-5 font-questrial">
+    <h1 class="text-3xl font-bold text-center mb-5">Meet Our Devs!</h1>
+    <div class="flex flex-wrap justify-center mt-4 space-x-4">
+        <div class="flex flex-col items-center mb-4 mx-2">
+            <p class="text-lg text-center mb-2">Anaiah</p>
+            <img src="https://imgur.com/m93WP8n.png" alt="About Us" class=" w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4 mx-2">
+            <p class="text-lg text-center mb-2">Brian</p>
+            <img src="https://imgur.com/SBHpkyR.png" alt="About Us" class=" w-full md:w-1/2">
+        </div>
+        <div class="flex flex-col items-center mb-4 mx-2">
+            <p class="text-lg text-center mb-2">Gabby</p>
+            <img src="https://imgur.com/PeMcTMt.png" alt="About Us" class=" w-full md:w-1/2">
+        </div>
+    </div>
 </section>
 {% endif %}
 
@@ -137,7 +261,56 @@
 
     showReview(currentIndex)
 
-    setInterval(rotateReviews, 3000)
+    setInterval(rotateReviews, 4000)
+    const stickyNav = document.getElementById('sticky-nav');
+    const navLinks = stickyNav.querySelectorAll('a');
+    const sections = document.querySelectorAll('section'); 
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            stickyNav.classList.add('scrolled');
+            stickyNav.style.opacity = '1';
+            stickyNav.style.pointerEvents = 'auto';
+        } else {
+            stickyNav.classList.remove('scrolled');
+            stickyNav.style.opacity = '0'; 
+            stickyNav.style.pointerEvents = 'none';
+        }
+
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    navLinks.forEach(link => {
+        let section = document.querySelector(link.getAttribute('href'));
+        
+        if (
+            section.offsetTop <= fromTop &&
+            section.offsetTop + section.offsetHeight > fromTop
+        ) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+
+   
 </script>
 
 {% endblock  %}

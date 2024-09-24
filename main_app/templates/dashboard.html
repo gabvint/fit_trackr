@@ -9,8 +9,8 @@
 {% block content %}
     
 
-    <div class="text-4xl font-quattrocento mt-8 ml-4 sm:ml-8 italic text-center sm:text-left">
-        <p>{{ user.first_name }} {{ user.last_name }}'s FitTrackr</p>
+    <div class="text-4xl font-quattrocento mt-8 ml-4 sm:ml-8 text-center sm:text-left">
+        <p class="text-center font-questrial ">{{ user.first_name }}'s FitTrackr</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-8 lg:gap-32 justify-center px-4 sm:px-0">
@@ -61,12 +61,12 @@
         </div>
     
         <div class="bg-white w-full max-w-full md:max-w-[525px] h-full mx-auto md:ml-7 md:mr-5 p-9 rounded-lg font-questrial">
-            <div class="text-3xl font-quattrocento">
+            <div class="text-3xl font-questrial text-center">
                 See all your recent logs
             </div>
     
             {% comment %} date selector {% endcomment %}
-            <div class="mt-4">
+            <div class="mt-4 ">
                 <form method="GET" action="{% url 'user_dashboard' %}" class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <label for="workout_date" class="text-lg text-gray-700">Select Date:</label>
                     <input type="date" id="workout_date" name="workout_date" value="{{ selected_date|date:'Y-m-d' }}" class="border p-2 rounded-lg">
@@ -133,7 +133,7 @@
             <div class=" bg-white rounded-md border p-5 mt-6 border-cream">
             
                 <div class=" flex justify-between mb-2">
-                     <p class="  text-xl md:text-2xl">Recent workouts</p>
+                     <p class="  text-xl md:text-2xl">Recent Workouts</p>
  
                      <a href="{% url 'create_workout' %}">
                          <div class="relative rounded-md py-1 w-28 text-center overflow-hidden group bg-black text-cream hover:bg-gradient-to-r
@@ -214,15 +214,11 @@
 
         Plotly.newPlot('meal-chart', mealData, layoutMeal);
 
-         // Sample data
         const totalMealCalories = {{ total_meal_calories }};
         const totalWorkoutCalories = {{ total_workout_calories }};
         const calorieGoal = {{ calorie_goal}}; 
         const caloriesRemaining = calorieGoal - totalMealCalories + totalWorkoutCalories;
-
         
-
-        // Data for the pie chart
         const goalData = [{
             values: [totalMealCalories, totalWorkoutCalories, caloriesRemaining],
             labels: ['Meal Calories', 'Workout Calories', 'Calories Remaining'],
@@ -242,18 +238,16 @@
                 '#F1F1F1',
                 '#4B3F3B']
             }
-        }];
+        }]
 
-        // Layout for the chart
         const layoutGoals = {
             title: 'Calorie Breakdown',
             font: {
                 color: '#3C3D37'
             }
-        };
+        }
 
-        // Create the plot
-        Plotly.newPlot('calorie-breakdown-graph', goalData , layoutGoals);
+        Plotly.newPlot('calorie-breakdown-graph', goalData , layoutGoals)
 
     </script>
 {% endblock content %}

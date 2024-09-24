@@ -56,12 +56,9 @@ def get_workouts_by_muscle_group(request):
     workouts_response = get_workouts(muscle_group)
     if workouts_response.status_code == 200:
         data = workouts_response.json()
-        print(data)
         workout_list = [item['WorkOut'] for item in data if 'Muscles' in item]
         return JsonResponse({'workouts': workout_list})
-    else:
-        return JsonResponse({'error': 'Failed to fetch workouts'}, status=workouts_response.status_code)
-    # return JsonResponse({'workouts': []})
+    return JsonResponse({'workouts': []})
 
 
 class CreateMeals(CreateView, LoginRequiredMixin):
@@ -167,6 +164,7 @@ def user_dashboard(request):
     calorie_goal = user.calorie_goal or 0
     workout_goal = user.workout_goal or 0
 
+<<<<<<< HEAD
     if selected_date:
         selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
         recent_workouts = Workout.objects.filter(
@@ -206,6 +204,40 @@ def user_dashboard(request):
         'recent_meals': recent_meals,
         'recent_workouts': recent_workouts,
         'total_meal_calories': total_meal_calories,
+=======
+    # Handle the selected date
+    if selected_date:
+        selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
+    else:
+        selected_date = datetime.today().date()
+
+    # Query recent workouts and meals
+    recent_workouts = Workout.objects.filter(day__date=selected_date, day__user=user).order_by('-day')[:2]
+    recent_meals = Meal.objects.filter(day__date=selected_date, day__user=user).order_by('-id')[:2]
+    todays_meals = Meal.objects.filter(day__date=selected_date, day__user=user)
+    todays_workouts = Workout.objects.filter(day__date=selected_date, day__user=user)
+
+    # Calculate total meal and workout calories
+    total_meal_calories = todays_meals.aggregate(total_calories=Sum('calories')).get('total_calories') or 0
+    total_workout_calories = todays_workouts.aggregate(total_calorie_lost=Sum('calorie_lost')).get('total_calorie_lost') or 0
+
+    # Calculate net calories
+    net_calories = calorie_goal - total_meal_calories + total_workout_calories
+
+    # Prepare labels and values for the pie chart
+    labels = ['Calories Consumed', 'Remaining Calories']
+    remaining_calories = calorie_goal - total_meal_calories
+    values = [total_meal_calories, remaining_calories]
+
+    # Calculate today's meal and workout counts
+    todays_meal_count = todays_meals.count()
+    todays_workout_count = todays_workouts.count()
+
+    return render(request, 'dashboard.html', {
+        'recent_meals': recent_meals, 
+        'recent_workouts': recent_workouts, 
+        'total_meal_calories': total_meal_calories,     
+>>>>>>> main
         'total_workout_calories': total_workout_calories,
         'net_calories': net_calories,
         'calorie_goal': calorie_goal,
