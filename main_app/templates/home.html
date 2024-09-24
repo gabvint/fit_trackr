@@ -69,7 +69,7 @@
         position: sticky;
         top: 0;
         z-index: 1000;
-        transition: opacity 0.3s ease, visibility 0.5s ease, transform 1s ease, background-color 0.3s, box-shadow 0.3s;
+        transition: display 1s ease, opacity 0.3s ease, visibility 1s ease, transform 1s ease, background-color 0.3s, box-shadow 0.3s;
         background-color: rgba(255, 255, 255, 0);
         opacity: 0;
         display: none;
@@ -118,7 +118,7 @@
 
 <section class=" font-questrial">
     <div class="relative flex justify-between items-center bg-cover pb-5" style="background: url('{% static 'images/food.jpg' %}') no-repeat center center/cover">
-        <div class="ml-10 mt-10 content max-w-md bg-offWhite p-5 bg-opacity-70 rounded-md">
+        <div class="ml-14 mt-10 content max-w-md bg-offWhite p-5 bg-opacity-70 rounded-md">
             <p class="mb-2">The best app to reach your nutrition and health goals</p>
             <h1 class="text-4xl font-bold">Reach your full potential</h1>
             <h1 class="text-4xl">with FitTrackr</h1>
@@ -130,7 +130,7 @@
                     <a href="{% url 'signup' %}">
                         <div class="relative rounded-md mt-2 py-1 w-auto text-center px-4 inline-block overflow-hidden group bg-sage text-cream hover:bg-gradient-to-r hover:from-sage hover:to-darkersage hover:ring-2 hover:ring-offset-2 hover:ring-sage transition-all ease-out duration-300">
                             <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative">Get Started Now</span>
+                            <span class="relative text-lg">Get Started Now</span>
                         </div>
                     </a>
                 </button>

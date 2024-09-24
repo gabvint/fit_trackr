@@ -42,13 +42,7 @@
   ## 🔮 Future Plans
 
 - **Incorporate Meals API**
-  - **Feature**: Ability to auto-fill calorie intake based on food.
-  - **Benefit**: Get a closer, accurate measurement of caloric intake for users.
-
-- **Incorporate Workouts API**
-  - **Feature**: Ability to auto-fill workouts to get additional information on workout and video guides.
-  - **Benefit**: Provides additional resources to the user who may want to learn more about a workout.
-
-- **Share**
-  - **Feature**: Ability to share goals with friends, and comment on each others’ goals.
-  - **Benefit**: Creates community and adds social aspect to the app.
+  - Ability to search food to pull calories from API
+  - Ability to view additional workout details from API
+  - Ability to share goals with friends, and comment on each others’ goals
+  - Review carousel to utilize real reviews left about app
