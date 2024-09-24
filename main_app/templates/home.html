@@ -45,7 +45,7 @@
 
     #photos-container {
         position: relative;
-        height: 400px; /* Set the appropriate height for your photos */
+        height: 400px;
         overflow: hidden;
     }
     
@@ -66,35 +66,41 @@
 
 
     #sticky-nav {
-        position: sticky; /* Make it sticky */
-        top: 0; /* Stick to the top */
-        z-index: 1000; /* Ensure it stays on top */
-        transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-        background-color: rgba(255, 255, 255, 0); /* Initially transparent */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: opacity 0.3s ease, visibility 0.5s ease, transform 1s ease, background-color 0.3s, box-shadow 0.3s;
+        background-color: rgba(255, 255, 255, 0);
+        opacity: 0;
+        display: none;
+        transform: translateY(-100%);
     }
     
     #sticky-nav.scrolled {
-        background-color: rgba(255, 255, 255, 0.8); /* Background when scrolled */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow when scrolled */
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+        display: block;
+        transform: translateY(0);
     }
     #sticky-nav a {
-        display: inline-block; /* Make them behave like buttons */
-        padding: 10px 20px; /* Add padding */
-        margin: 0 10px; /* Space between buttons */
-        background-color: #697565; /* Button background color */
-        color: #ECDFCC; /* Text color */
-        border-radius: 5px; /* Rounded corners */
-        text-decoration: none; /* Remove underline */
-        transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #697565;
+        color: #ECDFCC;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
     }
     
     #sticky-nav a:hover {
-        background-color: #697565; /* Darker green on hover */
+        background-color: #697565;
     }
     
     #sticky-nav a.active {
-        background-color: #697565; /* Active button color */
-        transform: scale(1.05); /* Slight scale effect on active */
+        background-color: #697565;
+        transform: scale(1.05);
     }
 </style>
 {% endblock head %}
@@ -290,6 +296,8 @@
     showReview(currentIndex)
 
     setInterval(rotateReviews, 4000)
+
+    
     const stickyNav = document.getElementById('sticky-nav');
     const navLinks = stickyNav.querySelectorAll('a');
     const sections = document.querySelectorAll('section'); 
