@@ -131,7 +131,6 @@ class WorkoutForm(forms.ModelForm):
     self.helper = FormHelper()
     self.helper.form_class = 'w-96 md:w-[450px] mx-auto bg-offWhite p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial'
     self.helper.layout = Layout(
-        #style not working
         Field('day'),
         Field('muscle_group'),
         Field('name'),
@@ -173,11 +172,7 @@ class MealForm(forms.ModelForm):
     super().__init__(*args, **kwargs)
     if available_days is not None:
       self.fields['day'].queryset = available_days
-    # self.fields['name'].widget.attrs.update({
-    #         'id': 'food-search',
-    #         'placeholder': 'Search for a food...',
-    #         'autocomplete': 'off'
-    #     })
+    
     
     
     self.fields['name'].widget.attrs['placeholder'] = 'Enter meal name'
@@ -188,7 +183,6 @@ class MealForm(forms.ModelForm):
     self.helper = FormHelper()
     self.helper.form_class = 'w-96 md:w-[450px] mx-auto bg-offWhite p-8 rounded-lg shadow-md mt-12 mb-12 font-questrial'
     self.helper.layout = Layout(
-        #style not working
         Field('name'),
         Field('day'),
         Field('meal'),

@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser, User
 from django.utils import timezone
 from enum import Enum
 
-# Create your models here.
 
 
 class MuscleGroup(Enum):

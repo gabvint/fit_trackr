@@ -71,29 +71,6 @@ class CreateMeals(CreateView, LoginRequiredMixin):
         kwargs['available_days'] = Day.objects.filter(user=user)
         return kwargs
 
-# def search_food(request):
-#     food_search = request.GET.get('q', None)
-
-#     if not food_search:
-#         return JsonResponse([], safe=False)
-
-#     food_search_response = get_foods(food_search)
-
-#     if food_search_response.status_code == 200:
-#         data = food_search_response.json()
-#         food_items = [
-#             {
-#                 "name": item['description'],
-#                 "calories": next((nutrient['value'] for nutrient in item['foodNutrients'] if nutrient['nutrientName'] == "Calories"), 0)
-#             }
-#             for item in data.get('foods', [])
-#         ]
-#         return JsonResponse(food_items, safe=False)
-#     else:
-#         print(f"Error fetching foods: {food_search_response.status_code}")
-#         return JsonResponse([], safe=False)
-
-
 class WorkoutList(CreateView, LoginRequiredMixin):
     model = Workout
     fields = ['name', 'calorie_lost']

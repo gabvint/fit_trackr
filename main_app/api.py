@@ -16,16 +16,3 @@ def get_workouts(muscle_group):
   
   return response
 
-
-# def get_foods(food_search):
-#   api_key = os.getenv('FOOD_API_KEY')
-#   url = "https://api.nal.usda.gov/fdc/v1/foods/search"
-#   params = {
-#         "query": food_search,
-#         "pageSize": 10,
-#         "api_key": api_key
-#     }
-#   response = requests.get(url, params=params)
-#   print(f"Request URL: {response.url}")
-
-#   return response
