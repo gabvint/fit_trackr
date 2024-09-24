@@ -2,107 +2,8 @@
 {% load static %}
 {% block head %}
 
-<style>
-    @keyframes slide-in {
-        0% {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
+<link rel="stylesheet" href="{% static 'css/landingstyles.css' %}">
 
-    @keyframes slide-out {
-        0% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-    }
-
-    .slide-in {
-        animation: slide-in 1s forwards;
-        will-change: transform, opacity;
-    }
-    
-    .slide-out {
-        animation: slide-out 1s forwards;
-        will-change: transform, opacity;
-    }
-
-    #reviews-container {
-        max-height: 120px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-    }
-
-    #photos-container {
-        position: relative;
-        height: 400px;
-        overflow: hidden;
-    }
-    
-    .photo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-    }
-    
-    .photo.active {
-        opacity: 1;
-        z-index: 1;
-    }
-
-
-    #sticky-nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        transition: display 1s ease, opacity 0.3s ease, visibility 1s ease, transform 1s ease, background-color 0.3s, box-shadow 0.3s;
-        background-color: rgba(255, 255, 255, 0);
-        opacity: 0;
-        display: none;
-        transform: translateY(-100%);
-    }
-    
-    #sticky-nav.scrolled {
-        background-color: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        opacity: 1;
-        display: block;
-        transform: translateY(0);
-    }
-    #sticky-nav a {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 0 10px;
-        background-color: #697565;
-        color: #ECDFCC;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s, transform 0.3s;
-    }
-    
-    #sticky-nav a:hover {
-        background-color: #697565;
-    }
-    
-    #sticky-nav a.active {
-        background-color: #697565;
-        transform: scale(1.05);
-    }
-</style>
 {% endblock head %}
 
 {% block content %}
@@ -172,7 +73,7 @@
             </p>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <img src="https://imgur.com/6MLBOkn.png"/>
+            <img src="https://imgur.com/GfYxnkL.png"/>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Workout Logging</h2>
@@ -181,7 +82,7 @@
             </p>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <img src="https://imgur.com/6MLBOkn.png"/>
+            <img src="https://imgur.com/Y5t9PIR.png"/>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold">Progress Insights</h2>
@@ -199,25 +100,16 @@
             </p>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <img src="https://imgur.com/6MLBOkn.png"/>
+            <img src="https://imgur.com/3a8lX3s.png"/>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold">Community Support</h2>
+            <h2 class="text-xl font-semibold">Personalization</h2>
             <p class="text-sm">
-                Join our community of fitness enthusiasts for support, tips, and motivation. Share your journey and learn from others.
+                Personalize your experience by setting a unique username, updating your email, and uploading a profile photo. Customize your profile to make it truly yours!
             </p>
         </div>
         <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <img src="https://imgur.com/6MLBOkn.png"/>
-        </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold">User-Friendly Interface</h2>
-            <p class="text-sm">
-                Enjoy an intuitive and easy-to-use interface designed to enhance your experience and keep you focused on your goals.
-            </p>
-        </div>
-        <div class="feature-card bg-offWhite p-4 rounded-lg shadow-md">
-            <img src="https://imgur.com/6MLBOkn.png"/>
+            <img src="https://imgur.com/12fAYxa.png"/>
         </div>
     </div>
 </section>
@@ -230,8 +122,8 @@
             <p class="text-lg text-center mb-2">Anaiah</p>
             <img src="https://imgur.com/m93WP8n.png" alt="About Us" class="w-full md:w-1/2">
             <div class="absolute inset-0 opacity-0 group-hover:opacity-90 text-center p-0 rounded transition-opacity duration-300">
-                <p class='bg-white p-4 rounded-md'>This is about Anaiah.
-                    <a class='flex justify-center mt-2' href='' target='_blank'>
+                <p class='bg-white p-4 rounded-md'>Anaiah is a front-end focused software engineer who loves blending creativity with problem-solving. With a passion for design and an eagerness to learn, they enjoy creating user-friendly experiences that look great and function seamlessly.
+                    <a class='flex justify-center mt-2' href='https://www.linkedin.com/in/anaiahm/' target='_blank'>
                         <img src='https://img.shields.io/badge/-@Anaiah Maddox-blue?style=flat&logo=Linkedin&logoColor=black' />
                     </a>
                 </p>
