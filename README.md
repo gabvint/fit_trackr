@@ -6,7 +6,7 @@
   ## 📸  Screenshots
   | Description       | Screenshot                                                |
   |:-----------------:|-----------------------------------------------------------|
-  | **Landing Page**  | ![Landing Page]()                                         |
+  | **Landing Page**  | ![Landing Page](src/assets/landingpage.png)               |
   | **Sign Up**       | ![Sign Up](src/assets/signup.png)                         |
   | **Sign In**       | ![Sign In](src/assets/signin.png)                         |
   | **Dashboard**     | ![Dashboard](src/assets/dashboard.png)                    |
