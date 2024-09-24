@@ -21,6 +21,7 @@
   | **Sign Up**       | ![Sign Up](src/assets/signup.png)                         |
   | **Sign In**       | ![Sign In](src/assets/signin.png)                         |
   | **Dashboard**     | ![Dashboard](src/assets/dashboard.png)                    |
+  | **User Profile**  | ![Dashboard](src/assets/userprofile.png)                  |
   | **Set Goals**     | ![Set Goals](src/assets/setgoals.png)                     |
   | **WorkOut Log**  | ![WorkOut Log](src/assets/workoutlog.png)                  |
   | **WorkOut Form**| ![WorkOut Form](src/assets/workoutform.png)                 |
