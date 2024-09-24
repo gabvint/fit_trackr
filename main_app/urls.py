@@ -13,7 +13,6 @@ urlpatterns = [
   path('workouts/create/', views.CreateWorkout.as_view(), name="create_workout"),
   # path('get_workouts/', views.get_workouts_by_muscle_group, name='get_workouts_by_muscle_group'),
   path('meals/create/', views.CreateMeals.as_view(), name="create_meals"),
-  # path('meals/search/', views.search_food, name='search_food'),
   path('workoutlog/', views.workout_log, name="workout_log"),
   path('workoutlog/<int:workout_id>/', views.workout_detail, name="workout_detail"),
   path('workoutlog/<int:pk>/update/', views.WorkoutUpdate.as_view(), name="workout_update"),
@@ -24,7 +23,6 @@ urlpatterns = [
   path('meallog/<int:pk>/delete/', views.MealDelete.as_view(), name='meal_delete'), 
   path('profile/<int:pk>/', views.UserProfile.as_view(), name="user_profile"),
   path('profile/<int:pk>/update', views.UserProfileUpdate.as_view(), name="user_update"),
-  #path('changepassword/', views.password_change, name="password_change"),
 
 ]
 

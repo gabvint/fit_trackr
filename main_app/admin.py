@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import NewUser, Day, Meal, Workout
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
-# Register your models here.
+
 
 class CustomUserAdmin(UserAdmin):
   add_form = CustomUserCreationForm
